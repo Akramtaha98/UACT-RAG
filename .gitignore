@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+runs/
+data/
+*.pt
+*.pkl
+*.npy
+*.faiss
+nohup.out
+run.log
+.ipynb_checkpoints/

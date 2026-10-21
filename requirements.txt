@@ -1,0 +1,16 @@
+torch>=2.4
+transformers>=4.51
+sentence-transformers>=3.0
+vllm>=0.8
+bm25s>=0.2
+faiss-cpu>=1.8      # or faiss-gpu if available for your CUDA build
+datasets>=2.20
+numpy
+scipy
+pandas
+scikit-learn>=1.4
+statsmodels>=0.14
+pyyaml
+tqdm
+matplotlib
+tabulate
