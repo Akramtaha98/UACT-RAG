@@ -51,7 +51,7 @@ class NLI:
             enc = self.tok(
                 premises[i : i + batch_size],
                 hypotheses[i : i + batch_size],
-                truncation="only_first",
+                truncation=True,
                 max_length=max_length,
                 padding=True,
                 return_tensors="pt",

@@ -18,6 +18,7 @@ Stages
   python scripts/make_state_data.py techqa_retrieved --data data/techqa
 """
 import argparse
+import hashlib
 import json
 import os
 import random
@@ -70,7 +71,10 @@ def candidates(a, cfg):
     from uact.llm import LLM
 
     rng = random.Random(0)
-    rows = [e for e in _load(a.subsets, a.data, "train") if _relevant_sentences(e) and (e.get("completeness_score") or 0) >= 0.8]
+    cp = os.path.join(a.data, "contradiction_candidates.jsonl")
+    old = read_jsonl(cp) if (a.append and os.path.exists(cp)) else []
+    seen = {(c["source_id"], c["original"]) for c in old}
+    rows = [e for e in _load(a.subsets, a.data, a.split) if _relevant_sentences(e) and (e.get("completeness_score") or 0) >= 0.8]
     rng.shuffle(rows)
     rows = rows[: a.n]
     llm = LLM(cfg["models"]["generator"], cfg["models"]["vllm_gpu_mem_util"], cfg["models"]["max_model_len"], cfg["seed"])
@@ -81,10 +85,13 @@ def candidates(a, cfg):
                       "(e.g. a different value, step order, or condition), as a different manual revision might. Keep the style. "
                       f"Output only the rewritten sentence.\n\nSentence: {sent}"}])
         srcs.append((e["id"], sent))
+    keep = [k for k, s in enumerate(srcs) if s not in seen]
+    msgs, srcs = [msgs[k] for k in keep], [srcs[k] for k in keep]
     outs = llm.generate(msgs, max_tokens=100)
-    write_jsonl(os.path.join(a.data, "contradiction_candidates.jsonl"),
-                [{"source_id": i, "original": s, "contradicting": o["text"], "reviewed": None} for (i, s), o in zip(srcs, outs)])
-    print("Wrote candidates. A qualified reviewer must set reviewed=true/false on every line before 'build'.")
+    new = [{"source_id": i, "original": s, "contradicting": o["text"], "reviewed": None, "split": a.split}
+           for (i, s), o in zip(srcs, outs)]
+    write_jsonl(cp, old + new)
+    print(f"Wrote {len(new)} new candidates ({len(old)} kept). A reviewer must label the new ones before 'build'.")
 
 
 def build(a, cfg):
@@ -94,7 +101,7 @@ def build(a, cfg):
     if os.path.exists(cp):
         for c in read_jsonl(cp):
             if c["reviewed"] is True or (a.allow_unreviewed and c["reviewed"] is None):
-                appr[c["source_id"]] = c
+                appr[(c["source_id"], c["original"])] = c
     if a.allow_unreviewed:
         print("WARNING: unreviewed contradictions included -> development use only.")
     out = {"train": [], "val": [], "cal": [], "test": []}
@@ -104,7 +111,7 @@ def build(a, cfg):
             continue
         pool = list(rows)
         for e in rows:
-            tgt = names[rng.randrange(len(names))]
+            tgt = names[int(hashlib.md5(e["question"].encode()).hexdigest(), 16) % len(names)]  # split by QUESTION
             eid = e["id"]
             rel = _relevant_sentences(e)
             comp = e.get("completeness_score")
@@ -119,14 +126,31 @@ def build(a, cfg):
                 miss = _without_relevant(e)
                 if miss:
                     items.append(("missing", miss, "relevant_removed"))
-                if eid in appr:
-                    items.append(("contradictory", _docs_text(e) + [appr[eid]["contradicting"]], "reviewed_contradiction"))
+                for sent in rel:
+                    if (eid, sent) in appr:
+                        items.append(("contradictory", _docs_text(e) + [appr[(eid, sent)]["contradicting"]], "reviewed_contradiction"))
+                        break
             other = rng.choice(pool)
-            if other["id"] != eid:
+            if other["question"] != e["question"]:
                 items.append(("irrelevant", _docs_text(other), "context_swapped"))
             for lab, texts, src in items:
                 out[tgt].append({"id": f"{eid}:{src}", "question": e["question"], "passages": _passages(texts, f"{eid}:{src}"),
-                                 "state": lab, "source": src, "reviewed": src != "reviewed_contradiction" or appr[eid]["reviewed"] is True})
+                                 "state": lab, "source": src, "reviewed": True if src != "reviewed_contradiction" else (lab == "contradictory")})
+    for k in out:
+        seen, kept = set(), []
+        for r in out[k]:
+            key = (r["question"], r["state"], json.dumps([p["text"] for p in r["passages"]]))
+            if key not in seen:
+                seen.add(key)
+                kept.append(r)
+        print(f"{k}: removed {len(out[k]) - len(kept)} duplicate states")
+        out[k] = kept
+    qs = {k: {r["question"] for r in out[k]} for k in out}
+    for k, others in (("train", ("val", "cal", "test")), ("val", ("test",)), ("cal", ("test",))):
+        bad = set().union(*[qs[o] for o in others])
+        n0 = len(out[k])
+        out[k] = [r for r in out[k] if r["question"] not in bad]
+        print(f"{k}: removed {n0 - len(out[k])} states whose question also occurs in {others}")
     for k, rows in out.items():
         write_jsonl(os.path.join(a.data, "states", f"{k}.jsonl"), rows)
         print(k, len(rows), {l: sum(r["state"] == l for r in rows) for l in LABELS})
@@ -162,6 +186,8 @@ if __name__ == "__main__":
     ap.add_argument("--subsets", nargs="+", default=["emanual", "techqa"])
     ap.add_argument("--n", type=int, default=600)
     ap.add_argument("--allow_unreviewed", action="store_true")
+    ap.add_argument("--split", default="train", choices=["train", "validation", "test"])
+    ap.add_argument("--append", action="store_true")
     a = ap.parse_args()
     cfg = load_config(a.config)
     {"candidates": candidates, "build": build, "techqa_retrieved": techqa_retrieved}[a.stage](a, cfg)

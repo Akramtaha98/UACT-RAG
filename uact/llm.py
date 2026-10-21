@@ -31,15 +31,16 @@ COMPLEXITY_PROMPT = (
 )
 
 
-def format_context(passages):
+def format_context(passages, max_words=350):
     lines = []
     for i, p in enumerate(passages, 1):
+        text = " ".join(p["text"].split()[:max_words])
         meta = f"doc: {p.get('doc_id', '?')}"
         if p.get("revision"):
             meta += f", rev: {p['revision']}"
         if p.get("equipment_model"):
             meta += f", model: {p['equipment_model']}"
-        lines.append(f"[P{i}] ({meta}) {p['text']}")
+        lines.append(f"[P{i}] ({meta}) {text}")
     return "\n\n".join(lines)
 
 
