@@ -1,139 +1,208 @@
+<div align="center">
+
 # UACT-RAG
 
-Research code for **UACT-RAG: Cost-Aware Evidence Uncertainty Estimation and Adaptive Retrieval for Trustworthy Engineering Decision Support**.
+**Uncertainty-Aware Cognitive Triage for Retrieval-Augmented Generation**
 
-A controller decides, at each step, whether to **ANSWER**, **RETRIEVE** more evidence, or **ABSTAIN**. It uses a calibrated estimate of the *evidence state* (sufficient, partial, irrelevant, missing, contradictory) and a cost-sensitive policy trained on measured action utilities. A claim-level verifier checks each answer against its cited passages.
+Know when to answer, when to retrieve more, and when to abstain, for trustworthy question answering over engineering documentation.
 
-> **Status: research code, no results yet.** Nothing here has been run on a GPU. The CPU smoke test checks wiring only. Every number in the paper must come from your own logged runs on the frozen test split.
+![Status](https://img.shields.io/badge/status-research%20code-orange)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Task](https://img.shields.io/badge/task-RAG%20%7C%20abstention-informational)
+![Domain](https://img.shields.io/badge/domain-engineering%20manuals-lightgrey)
 
-## What is in the repo
+</div>
 
-| Path | Purpose |
-| --- | --- |
-| `uact/retrieval.py` | BM25 (`bm25s`) + BGE-M3/FAISS + reciprocal rank fusion + cross-encoder reranker |
-| `uact/features.py` | Evidence features z = [relevance, coverage, contradiction, answerability] |
-| `uact/estimator.py` | Five-state MLP estimator + temperature scaling (three-state variant for ablation A7) |
-| `uact/controller.py` | Per-action utility regressors, abstention margin, threshold / fixed-budget controllers (A5, A2) |
-| `uact/verifier.py` | Claim-level NLI verifier |
-| `uact/systems.py` | UACT-RAG and baselines B0-B9, scoring |
-| `uact/metrics.py`, `uact/report.py` | ECE, Brier, NLL, selective risk, AURC / E-AURC, bootstrap CIs, McNemar, Holm |
-| `scripts/` | Data prep, indexing, state-data creation, training, evaluation, analysis |
-| `run_all.sh` | The full pipeline in order |
-| `tests/smoke_test.py` | CPU wiring test with stub models |
+---
 
-## Pull and set up on the H200
+## Overview
+
+Retrieval-augmented generation can still produce fluent answers from incomplete, mismatched or conflicting evidence, which is risky for maintenance and troubleshooting advice. UACT-RAG adds a decision layer on top of a hybrid retriever:
+
+1. **Estimate the evidence state.** A lightweight, calibrated model classifies the retrieved passages as *sufficient*, *partial*, *irrelevant*, *missing* or *contradictory*, using relevance, coverage, contradiction and source-agreement features.
+2. **Choose an action.** A cost-sensitive policy, trained on measured action utilities, picks **ANSWER**, **RETRIEVE** or **ABSTAIN** under a retrieval budget.
+3. **Verify the answer.** A claim-level verifier checks each statement against its cited passages, and the system abstains if support is missing.
+
+```mermaid
+flowchart LR
+    Q[Question + equipment context] --> R[Hybrid retrieval<br/>BM25 + dense + RRF + rerank]
+    R --> E[Evidence-state estimator<br/>5 states, calibrated]
+    E --> C{Cost-aware controller}
+    C -- ANSWER --> G[Generate with citations]
+    G --> V[Claim-level verifier]
+    V -- supported --> A[Answer with sources]
+    V -- unsupported --> X[Abstain]
+    C -- RETRIEVE --> RW[Rewrite query from gaps] --> R
+    C -- ABSTAIN --> X
+```
+
+> **Status.** This is research code. The CPU smoke test checks wiring only, and no experimental results are included. Every number you report must come from your own logged runs on a frozen test split.
+
+## Features
+
+- Hybrid retrieval with BM25 (`bm25s`), BGE-M3 dense search (FAISS), reciprocal rank fusion and a cross-encoder reranker
+- Five-state evidence estimator with temperature scaling, plus a three-state variant for ablation
+- Learned cost-sensitive controller with an abstention margin, and fixed-rule controllers for comparison
+- Baselines B0-B9 and ablations A1-A7 under one interface
+- Metrics: ECE, Brier, NLL, selective risk, coverage, AURC / E-AURC, paired bootstrap, McNemar, Holm correction
+- Leakage-aware splits and a train / val / cal / test protocol, with tuning on validation only
+
+## Quick start
 
 ```bash
 git clone https://github.com/Akramtaha98/UACT-RAG.git
 cd UACT-RAG
 python -m venv .venv && source .venv/bin/activate
 pip install -U pip
-pip install -r requirements.txt          # installs torch, vllm, sentence-transformers, bm25s, faiss-cpu, ...
-python tests/smoke_test.py               # should print SMOKE TEST PASSED (CPU only, no downloads)
-huggingface-cli login                    # needed for gated models (e.g. Llama); Qwen3-8B needs no login
+pip install -r requirements.txt
+python tests/smoke_test.py          # CPU only, no downloads; should print SMOKE TEST PASSED
 ```
 
-Notes:
+Tips:
 
-- `vllm` pins its own `torch` build. If pip complains, install `vllm` first, then the rest.
-- On an H200 (141 GB) one process holds the generator (`vllm_gpu_mem_util: 0.45`, about 63 GB) plus the embedder, reranker and NLI model with room to spare. Lower or raise this in `configs/default.yaml`.
-- Replace `faiss-cpu` with `faiss-gpu` only if it matches your CUDA build.
-- Use `tmux` or `nohup` for long runs: `nohup bash run_all.sh data/techqa > run.log 2>&1 &`.
-
-Pull later updates with `git pull`.
+- `vllm` pins its own `torch` build. If pip reports a conflict, install `vllm` first, then the rest.
+- Generation runs on vLLM, so a CUDA GPU with 80 GB or more is recommended when the generator, embedder, reranker and NLI model share one device. Adjust `models.vllm_gpu_mem_util` in `configs/default.yaml`.
+- Use `faiss-gpu` instead of `faiss-cpu` only if it matches your CUDA build.
+- For long runs, use `tmux` or `nohup bash run_all.sh data/techqa > run.log 2>&1 &`.
+- Gated models (for example Llama) need `huggingface-cli login`. The default generator, Qwen3-8B, does not.
 
 ## Data
 
-Datasets are **not** included and must be obtained under their own licences.
+Datasets are not included and must be obtained under their own licences.
 
 ```bash
-# 1. RAGBench (CC-BY-4.0 on its Hugging Face card; verify the dataset id and field names)
+# RAGBench (check the dataset id, split names and fields on its Hugging Face card)
 python scripts/prepare_data.py ragbench --subsets emanual techqa
 
-# 2. IBM TechQA (registration required; no open licence was found; not redistributed here)
-python scripts/prepare_data.py techqa --root /path/to/TechQA --technotes /path/to/TechQA/training_dev_technotes.json --out data/techqa
-#    File names and JSON fields differ between releases: edit the lines marked [ADJUST] in scripts/prepare_data.py.
-#    If no held-out eval file exists, dev is split 50/50 into val/test and a warning is printed. Report that in the paper.
+# IBM TechQA (registration required; file names vary by release, see the [ADJUST] lines in the script)
+python scripts/prepare_data.py techqa --root /path/to/TechQA \
+    --technotes /path/to/TechQA/training_dev_technotes.json --out data/techqa
 
-# 3. Your engineering-manual collection (schema in the paper, Section 5.2)
-python scripts/prepare_data.py engineering --questions my_questions.jsonl --corpus my_passages.jsonl --out data/engineering
-#    Splits are by equipment family, so revisions of one family never straddle train / val / cal / test.
+# Your own engineering-manual collection (schema below)
+python scripts/prepare_data.py engineering --questions my_questions.jsonl \
+    --corpus my_passages.jsonl --out data/engineering
 ```
 
-Build the retrieval indexes:
+Build the indexes, then the evidence-state training data. Contradiction examples must be reviewed by a person:
 
 ```bash
 python scripts/build_index.py --data data/techqa
-python scripts/build_index.py --data data/engineering
-```
 
-Create evidence-state training data. **Contradiction examples need human review:**
-
-```bash
 python scripts/make_state_data.py candidates --subsets emanual techqa --n 600
-#  -> data/contradiction_candidates.jsonl : a qualified reviewer sets "reviewed": true/false on every line
+#   a qualified reviewer sets "reviewed": true/false on each line of data/contradiction_candidates.jsonl
 python scripts/make_state_data.py build --subsets emanual techqa
-python scripts/make_state_data.py techqa_retrieved --data data/techqa      # real retrieval-outcome labels
+python scripts/make_state_data.py techqa_retrieved --data data/techqa
 ```
 
 `--allow_unreviewed` exists for development only. Do not report results from a model trained on unreviewed contradictions.
 
-## Run everything
+<details>
+<summary>Engineering collection record schema</summary>
+
+```json
+{
+  "question_id": "ENG_001",
+  "question": "What checks are required for abnormal pump vibration?",
+  "equipment_model": "Model-A",
+  "document_ids": ["manual_01", "manual_02"],
+  "gold_evidence_ids": ["manual_01_p17"],
+  "reference_answer": "<expert-verified answer>",
+  "evidence_state": "sufficient",
+  "answerable": true,
+  "domain": "industrial_maintenance",
+  "difficulty": "medium",
+  "document_revision": "2025-01"
+}
+```
+
+Corpus passages: `{"pid", "doc_id", "text", "revision", "equipment_model"}` per line. Splits are made by equipment family so revisions of one manual never straddle train and test.
+
+</details>
+
+## Run the pipeline
 
 ```bash
 bash run_all.sh data/techqa
 ```
 
-This runs, in order: estimator training (full, A1, A7) -> action rollouts on train and val -> controller training and tuning on val -> baseline threshold tuning on val -> **frozen** test evaluation of all systems -> forced-answer runs for risk-coverage curves -> batch-size-1 latency runs -> budget sweep -> tables and paired statistics.
+| Step | What happens |
+| --- | --- |
+| 1 | Train estimators: full, A1 (relevance-only features), A7 (three-state) |
+| 2 | Roll out all feasible actions on train and val questions |
+| 3 | Train and tune the controllers on validation rollouts |
+| 4 | Fit baseline confidence models and thresholds on validation |
+| 5 | Evaluate all systems on the frozen test split |
+| 6 | Forced-answer runs for risk-coverage curves, batch-size-1 latency runs, retrieval-budget sweep |
+| 7 | Produce tables, curves and paired statistics |
 
-Outputs land in `runs/main/` (see `paths.work_dir`):
+Outputs go to `runs/main/`:
 
-- `full/estimator_report.json`: macro-F1, NLL, Brier, ECE, AUROC / AUPRC for insufficient-evidence detection, confusion matrix, and the three baseline detectors (RQ2)
-- `controller_grid.json`: every (lambda, mu, delta) grid point on validation
-- `eval/<dataset>_test/results_table.md` and `.csv`, `risk_coverage.png`, `paired_stats.csv`, and per-question records (`*.jsonl`) for case studies
+- `*/estimator_report.json`: macro-F1, NLL, Brier, ECE, AUROC / AUPRC for insufficient-evidence detection, confusion matrix, baseline detectors
+- `*/controller_grid.json`: every tuned grid point
+- `eval/<dataset>_test/results_table.md`, `results_table.csv`, `risk_coverage.png`, `paired_stats.csv`, and per-question records (`*.jsonl`)
 
-Run steps individually by reading `run_all.sh`; each script has a docstring with its arguments. For quick iteration, use `--split val --max_q 100`.
+Each script has a docstring with its arguments. For quick iteration use `--split val --max_q 100`.
 
-## System ids
+## Systems
 
 | Id | System | Note |
 | --- | --- | --- |
 | B0 | No retrieval | |
-| B1 | Standard RAG (dense top-k) | |
-| B2 | Hybrid RAG (BM25 + dense + RRF + reranker) | |
-| B3 | Adaptive-RAG-**style** | **Approximation**: zero-shot LLM complexity router, not the trained classifier of Jeong et al. |
-| B4 | CRAG-**style** | **Approximation**: reranker-score evaluator, corpus re-retrieval instead of web search. Not the original CRAG. |
-| B5 | Self-RAG | Not included. Run the official repo (MIT licence) with its specialised model on the same queries and corpus and drop the outputs into the same record format. |
-| B6 | Fixed RAG + calibrated-confidence abstention | threshold tuned on val |
-| B7 | Budget-matched multi-retrieval | no decision, always retrieves B times |
-| B8 | Calibrated-confidence retrieve / answer / abstain controller | simple strong baseline in the spirit of Know Before You Fetch; a reimplementation, not the authors' code |
-| B9 | LLM sufficiency-autorater abstention | in the spirit of Joren et al. (2025) |
-| B10 | BeliefRAG-style controller | Not included: no public code was found. Reimplement from the paper if you want this head-to-head. |
+| B1 | Standard RAG | dense top-k |
+| B2 | Hybrid RAG | BM25 + dense + RRF + reranker |
+| B3 | Adaptive-RAG-style | approximation: zero-shot router, not the trained classifier |
+| B4 | CRAG-style | approximation: reranker-score evaluator, no web search |
+| B5 | Self-RAG | not included; run the official repository on the same queries |
+| B6 | Fixed RAG + calibrated abstention | threshold tuned on validation |
+| B7 | Budget-matched multi-retrieval | always retrieves the maximum number of times |
+| B8 | Calibrated-confidence controller | simple strong baseline, a reimplementation |
+| B9 | Sufficiency-autorater abstention | LLM judge of context sufficiency |
+| B10 | BeliefRAG-style | not included; no public code was found |
 | UACT | Full method | |
-| A1-A7 | Ablations | A1 relevance-only features, A2 fixed budget, A3 no verifier, A4 no abstention (offline only), A5 fixed thresholds, A6 no cost penalty, A7 three-state estimator |
+| A1-A7 | Ablations | relevance-only features, fixed budget, no verifier, no abstention (offline only), fixed thresholds, no cost penalty, three-state estimator |
 
-Baselines B0-B2, B3, B4, B7 and A4 receive the generator prompt that allows `INSUFFICIENT_EVIDENCE`, so they can abstain by prompting. This is deliberate (it matches the strongest prompt-only practice) and should be stated in the paper.
+Baselines B0-B4 and B7 use the same generator prompt, which allows `INSUFFICIENT_EVIDENCE`, so they can abstain by prompting. State this in the paper.
 
-## Design choices you should know about
+## Repository layout
 
-- **Splits**: train fits models and builds controller targets; val does early stopping and all tuning; cal fits temperature scaling; test is touched once, by the final evaluation. The pipeline never reads test outcomes before that.
-- **Controller targets**: ANSWER and ABSTAIN utilities are measured. RETRIEVE utilities use a *reference continuation* (answer if P(sufficient) >= `tau_ref`, otherwise retrieve if budget remains, otherwise abstain). This is an approximation and a stated limitation.
-- **Selection rule** for lambda, mu and the abstention margin: lowest mean cost subject to validation selective risk <= `--risk_target` (default 0.10) and coverage >= `--min_coverage` (default 0.50). Pre-register these values.
-- **Risk-coverage curves and AURC** come from `--forced` runs (every question answered, ranked by the system's confidence). For UACT the confidence is the margin V(answer) - V(abstain).
+```
+uact/
+  retrieval.py     hybrid retrieval, RRF, reranking
+  features.py      evidence features: relevance, coverage, contradiction, answerability
+  estimator.py     five-state MLP + temperature scaling
+  controller.py    per-action utility regressors, abstention margin, fixed-rule controllers
+  verifier.py      claim-level NLI verifier
+  systems.py       UACT-RAG, baselines, scoring
+  metrics.py       calibration, selective prediction, paired statistics
+  report.py        per-system summaries
+scripts/           data prep, indexing, training, evaluation, analysis
+configs/           default.yaml
+tests/             CPU smoke test with stub models
+run_all.sh         full pipeline
+```
+
+## Design notes
+
+- **Splits.** Train fits models and builds controller targets. Val does early stopping and all tuning. Cal fits temperature scaling. Test is used once, by the final evaluation.
+- **Controller targets.** ANSWER and ABSTAIN utilities are measured. RETRIEVE utilities use a reference continuation policy, which is an approximation and a stated limitation.
+- **Selection rule.** Lambda, mu and the abstention margin are chosen to minimise mean cost subject to validation selective risk of at most `--risk_target` (default 0.10) and coverage of at least `--min_coverage` (default 0.50). Pre-register these values.
+- **Risk-coverage curves and AURC** come from `--forced` runs, where every question is answered and ranked by the system's confidence.
 - **Latency** is exact only with `--batch_size 1`; batched runs report time divided by batch size.
-- **GPU memory**: `nvidia_smi_used_gb` is the whole device; `torch_peak_gb_this_process` does not include vLLM's own allocation.
-- **Budget sweep** reuses the controller trained at the default `max_rounds`; retrain per budget for a strict comparison.
-- **Correctness**: an LLM judge (same generator) or token-F1 (`eval.use_llm_judge`). Neither is ground truth: validate on the 150-250 example human audit.
-- **Verifier**: DeBERTa-MNLI entailment of each claim against cited (or all) passages. It is an automated proxy; known to fail when model memory agrees with a bad passage.
+- **Correctness** uses an LLM judge or token-F1 (`eval.use_llm_judge`). Neither is ground truth, so validate on a human-audited subset.
+- **Verifier.** DeBERTa-MNLI entailment of each claim against cited passages is an automated proxy, and it can fail when model memory agrees with a bad passage.
 
-## Things to verify before trusting results
+## Before you trust results
 
-1. RAGBench dataset id, split names and field names (`prepare_data.py ragbench`). The label-to-state rules in `make_state_data.py` are transparent but heuristic.
-2. TechQA file names and fields (`prepare_data.py techqa`, lines marked `[ADJUST]`).
-3. `bm25s` and `sentence-transformers` API versions (`uact/retrieval.py`, `uact/models.py`). The reranker output is sigmoid-normalised defensively.
-4. The vLLM chat template for your generator (`enable_thinking=False` is passed for Qwen3).
-5. Model licences (Llama 3.1 Community License has attribution and naming rules) and the licences of any manuals you include.
+1. Check RAGBench dataset id, split names and field names, and the label-to-state rules in `make_state_data.py`.
+2. Check TechQA file names and fields in `prepare_data.py` (lines marked `[ADJUST]`).
+3. Confirm `bm25s` and `sentence-transformers` API behaviour for your installed versions.
+4. Confirm the vLLM chat template for your generator.
+5. Check model licences (the Llama 3.1 Community License has attribution and naming rules) and the licences of any manuals you include.
 
-## Licence
+## Citation
 
-Code: choose a licence before publishing (MIT or Apache-2.0 are common). Datasets and models keep their own licences.
+A paper describing this work is in preparation. A citation entry will be added here once it is available.
+
+## License
+
+No licence has been chosen yet. Add a `LICENSE` file (for example MIT or Apache-2.0) before sharing the code more widely. Datasets and models keep their own licences.
