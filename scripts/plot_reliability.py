@@ -62,6 +62,30 @@ def draw(P_raw, P_cal, y, bad_idx, out):
     print(json.dumps({k: {n: v["ece"] for n, v in d.items()} for k, d in res.items()}, indent=2))
 
 
+def slice_report(P_raw, P_cal, y, bad_idx, src, out):
+    """ECE per slice under both definitions used in the paper:
+    binary_conf = confidence of the predicted insufficient/sufficient decision, max(p, 1-p), vs. whether the decision is right (Table 'estimation');
+    p_insuff    = P(insufficient) itself vs. observed fraction insufficient (Figure 3b);
+    top_label   = five-state top-label confidence (Figure 3a)."""
+    bad = np.isin(y, bad_idx).astype(float)
+    rep = {}
+    for sl, m in (("pooled", np.ones(len(y), bool)), ("synthetic", src != "techqa_retrieved"), ("techqa", src == "techqa_retrieved")):
+        if not m.any():
+            continue
+        rep[sl] = {"n": int(m.sum())}
+        for tag, P in (("before", P_raw), ("after", P_cal)):
+            p = P[m][:, bad_idx].sum(1)
+            pred = (p >= 0.5).astype(float)
+            conf = np.maximum(p, 1 - p)
+            rep[sl][tag] = {
+                "binary_conf_ece": round(ece(bins(conf, (pred == bad[m]).astype(float))), 4),
+                "p_insuff_ece": round(ece(bins(p, bad[m])), 4),
+                "top_label_ece": round(ece(bins(P[m].max(1), (P[m].argmax(1) == y[m]).astype(float))), 4)}
+    json.dump(rep, open(os.path.join(out, "ece_by_slice.json"), "w"), indent=2)
+    print("ECE by slice (check pooled binary_conf_ece against the estimation table: 0.030 before, 0.025 after):")
+    print(json.dumps(rep, indent=2))
+
+
 def main():
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from uact.estimator import Estimator, bad_indices, map_label, state_names
@@ -82,7 +106,9 @@ def main():
     est = Estimator.load(os.path.join(a.variant, "estimator.pt"))
     names = state_names(est.kind)
     y = np.array([names.index(map_label(r["state"], est.kind)) for r in rows])
-    draw(est.predict_proba(X, calibrated=False), est.predict_proba(X, calibrated=True), y, np.array(bad_indices(est.kind)), a.out)
+    P_raw, P_cal = est.predict_proba(X, calibrated=False), est.predict_proba(X, calibrated=True)
+    draw(P_raw, P_cal, y, np.array(bad_indices(est.kind)), a.out)
+    slice_report(P_raw, P_cal, y, np.array(bad_indices(est.kind)), np.array([r.get("source", "") for r in rows]), a.out)
 
 
 if __name__ == "__main__":
