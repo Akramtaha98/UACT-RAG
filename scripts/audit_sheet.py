@@ -1,6 +1,19 @@
-import argparse, csv, json, os, random, sys
+"""Human audit of answer-correctness rules: export a blind sheet, import human y/n, report agreement per rule.
+
+  python scripts/audit_sheet.py export --eval_dir runs/main/eval/techqa_val_audit --systems B0 B2 --n 60 [--name audit2 --seed 1 --exclude data/review/judge_audit_key.json]
+  # a human fills 'decision (y/n)': is the candidate answer CORRECT given the reference (central claim agrees)?
+  python scripts/audit_sheet.py import --sheet data/review/audit2.csv --key data/review/audit2_key.json
+The sheet hides the system name and every automatic verdict; those are stored in the key file.
+"""
+import argparse
+import csv
+import json
+import os
+import random
+import sys
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from review_sheet import read_sheet
+from review_sheet import kappa as _kappa, read_sheet  # noqa: E402
 
 OUT = "data/review"
 
@@ -38,7 +51,7 @@ def report(name, ids, H, pred):
     fp = sum(x and not y for x, y in zip(p, h)); fn = sum((not x) and y for x, y in zip(p, h))
     po = (tp + tn) / n; pp, ph = (tp + fp) / n, (tp + fn) / n
     pe = pp * ph + (1 - pp) * (1 - ph); k = (po - pe) / (1 - pe) if pe < 1 else 1.0
-    print(f"{name:32s} agree={po:.2f} kappa={k:.2f} | too lenient={fp}  too strict={fn}  | rule-correct {pp:.2f} vs human-correct {ph:.2f}")
+    print(f"{name:32s} agree={po:.2f} kappa={k:.2f} | too lenient (rule yes, human no)={fp}  too strict (rule no, human yes)={fn}  | rule-correct {pp:.2f} vs human-correct {ph:.2f}")
 
 
 def do_import(a):
@@ -54,6 +67,82 @@ def do_import(a):
         report(f"  {s} (n={len(v)}): gold AND F1>={a.f1}", v, H, lambda i: key[i]["gold"] and key[i]["f1"] >= a.f1)
 
 
+def export_test(a):
+    """Blind audit sheet of TEST answers. Humans judge only ANSWERED answerable questions; answering an unanswerable
+    question counts as an error and abstaining as no answer, so neither needs a human. Per system: all such answers if
+    there are <= --cap, else a random sample of --cap (the key stores the population size for weighting)."""
+    qs = {q["qid"]: q for q in map(json.loads, open(os.path.join(a.data, f"{a.split}.jsonl")))}
+    rng = random.Random(a.seed)
+    items, pops = [], {}
+    for sname in a.systems:
+        pool = []
+        for line in open(os.path.join(a.eval_dir, f"{sname}.jsonl")):
+            r = json.loads(line)
+            if r["answered"] and qs[r["qid"]]["answerable"]:
+                pool.append(r)
+        pops[sname] = {"population": len(pool), "n_questions": len(qs)}
+        rng.shuffle(pool)
+        pops[sname]["sampled"] = min(a.cap, len(pool))
+        items += [(sname, r) for r in pool[: a.cap]]
+    rng.shuffle(items)
+    os.makedirs(OUT, exist_ok=True)
+    key = {}
+    hdr = ["id", "question", "reference_answer", "candidate_answer", "decision (y/n)", "notes"]
+    rows = []
+    for i, (sname, r) in enumerate(items):
+        q = qs[r["qid"]]
+        rows.append([i, " ".join(q["question"].split()), " ".join(q["reference_answer"].split()), " ".join(r["answer"].split()), "", ""])
+        key[i] = {"system": sname, "qid": r["qid"], "judge": r.get("judge_correct"), "gold": (r.get("gold_recall") or 0) > 0, "f1": r["f1"]}
+    second = sorted(rng.sample(range(len(rows)), min(a.second_n, len(rows))))
+    for suffix, sel in (("A", range(len(rows))), ("B", second)):
+        with open(os.path.join(OUT, f"{a.name}_{suffix}.csv"), "w", newline="", encoding="utf-8-sig") as f:
+            w = csv.writer(f)
+            w.writerow(hdr)
+            for i in sel:
+                w.writerow(rows[i])
+    json.dump({"key": key, "populations": pops}, open(os.path.join(OUT, f"{a.name}_key.json"), "w"), indent=1)
+    print(f"wrote {OUT}/{a.name}_A.csv ({len(rows)} items, annotator 1) and {a.name}_B.csv ({len(second)} items, annotator 2) and {a.name}_key.json (do NOT share the key)")
+    print({k: v for k, v in pops.items()})
+
+
+def import_test(a):
+    import numpy as np
+
+    K = json.load(open(a.key))
+    key = {int(k): v for k, v in K["key"].items()}
+    pops = K["populations"]
+    A = read_sheet(a.a)
+    B = read_sheet(a.b) if a.b else {}
+    missing = [i for i in key if i not in A]
+    print(f"annotator 1 labelled {len(A)} of {len(key)} items" + (f" (missing {len(missing)}: {missing[:10]})" if missing else ""))
+    if B:
+        ids = sorted(set(A) & set(B))
+        po = np.mean([A[i] == B[i] for i in ids])
+        pa, pb = np.mean([A[i] for i in ids]), np.mean([B[i] for i in ids])
+        k, _ = _kappa(A, B)
+        pe1 = pa * pb + (1 - pa) * (1 - pb)
+        pabak = 2 * po - 1
+        gwet = (po - 2 * ((pa + pb) / 2) * (1 - (pa + pb) / 2)) / (1 - 2 * ((pa + pb) / 2) * (1 - (pa + pb) / 2))
+        print(f"inter-annotator (n={len(ids)}): agreement={po:.2f} kappa={k:.2f} PABAK={pabak:.2f} Gwet AC1={gwet:.2f}")
+        dis = [i for i in ids if A[i] != B[i]]
+        print("disagreements (ids):", dis)
+    rng = np.random.default_rng(0)
+    print("\nHuman-audited accuracy over ALL test questions (answered-answerable human-correct / all questions):")
+    for s, pop in pops.items():
+        ids = [i for i in key if key[i]["system"] == s and i in A]
+        if not ids:
+            continue
+        y = np.array([A[i] for i in ids], float)
+        scale = pop["population"] / pop["n_questions"]
+        boots = [scale * rng.choice(y, len(y)).mean() for _ in range(2000)]
+        print(f"{s:6s} human-correct among sampled answers {y.mean():.2f} (n={len(y)} of {pop['population']} answered-answerable) -> accuracy_all {scale * y.mean():.3f} [95% CI {np.percentile(boots, 2.5):.3f}, {np.percentile(boots, 97.5):.3f}]")
+    print("\nAgreement of automatic rules with annotator 1 (all systems pooled):")
+    ids = sorted(i for i in key if i in A)
+    report("LLM judge", [i for i in ids if key[i].get("judge") is not None], A, lambda i: key[i]["judge"])
+    report("gold doc in evidence", ids, A, lambda i: key[i]["gold"])
+    report(f"gold doc AND F1 >= {a.f1}", ids, A, lambda i: key[i]["gold"] and key[i]["f1"] >= a.f1)
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     sp = ap.add_subparsers(dest="cmd", required=True)
@@ -65,5 +154,11 @@ if __name__ == "__main__":
     i = sp.add_parser("import")
     i.add_argument("--sheet", required=True); i.add_argument("--key", default=os.path.join(OUT, "judge_audit_key.json"))
     i.add_argument("--f1", type=float, default=0.15)
+    t = sp.add_parser("export_test")
+    t.add_argument("--eval_dir", required=True); t.add_argument("--systems", nargs="+", required=True)
+    t.add_argument("--cap", type=int, default=60); t.add_argument("--second_n", type=int, default=60); t.add_argument("--seed", type=int, default=0)
+    t.add_argument("--data", default="data/techqa"); t.add_argument("--split", default="test"); t.add_argument("--name", default="test_audit")
+    u = sp.add_parser("import_test")
+    u.add_argument("--a", required=True); u.add_argument("--b", default=None); u.add_argument("--key", required=True); u.add_argument("--f1", type=float, default=0.15)
     a = ap.parse_args()
-    export(a) if a.cmd == "export" else do_import(a)
+    {"export": export, "import": do_import, "export_test": export_test, "import_test": import_test}[a.cmd](a)
