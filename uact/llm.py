@@ -16,9 +16,15 @@ SUFF_PROMPT = (
     "specified equipment? Answer with one word: Yes or No."
 )
 JUDGE_PROMPT = (
-    "Question: {q}\nReference answer: {ref}\nCandidate answer: {ans}\n\n"
-    "Is the candidate answer correct, i.e. consistent with the reference answer and not adding contradicting or "
-    "unsupported actions? Answer with one word: Yes or No."
+    "You are grading an answer to a technical-support question against the reference answer.\n\n"
+    "Question: {q}\n\nReference answer: {ref}\n\nCandidate answer: {ans}\n\n"
+    "Rules:\n"
+    "- Mark CORRECT only if the candidate's central claim (the specific cause, fix, value, step, or yes/no conclusion) "
+    "agrees with the reference.\n"
+    "- Mark INCORRECT if the candidate gives only generic advice, only says where the information can be found, "
+    "contradicts the reference (including the opposite yes/no conclusion), or addresses a different problem.\n"
+    "- Extra detail is fine if it does not contradict the reference. Missing minor detail is fine if the central claim matches.\n"
+    "First write one short sentence of reasoning. Then, on a new line, write exactly 'VERDICT: CORRECT' or 'VERDICT: INCORRECT'."
 )
 REWRITE_PROMPT = (
     "Question: {q}\n\nEvidence retrieved so far did not fully answer it. Unresolved aspects: {gaps}.\n"

@@ -30,7 +30,7 @@ def utilities(R, lam, mu, cfg):
     V_ans, V_abs, V_ret = [], [], []
     for s in R["states"]:
         u_abs = np.where(s["answerable"], 0.0, ac)
-        good = s["ans_answered"] & s["ans_correct"] & (s["ans_support"] >= 0.8)
+        good = s["ans_answered"] & s["ans_correct"] & (s["ans_support"] >= c.get("support_floor", 0.8))
         u_ans = np.where(s["ans_answered"], np.where(good, 1.0, -lam), u_abs)
         V_ans.append(u_ans - mu * s["ans_tokens"] / 1000.0 * per1k)
         V_abs.append(u_abs)
@@ -94,7 +94,8 @@ def feasible_rank(rows, risk_target, min_cov):
     ok = [r for r in rows if r["stats"]["coverage"] >= min_cov and not np.isnan(r["stats"]["selective_risk"]) and r["stats"]["selective_risk"] <= risk_target]
     if ok:
         return min(ok, key=lambda r: r["stats"]["mean_cost"])
-    return min(rows, key=lambda r: (np.nan_to_num(r["stats"]["selective_risk"], nan=9), r["stats"]["mean_cost"]))
+    pool = [r for r in rows if r["stats"]["coverage"] >= min_cov] or rows  # fallback: lowest risk among points with enough coverage
+    return min(pool, key=lambda r: (np.nan_to_num(r["stats"]["selective_risk"], nan=9), r["stats"]["mean_cost"]))
 
 
 if __name__ == "__main__":
@@ -110,7 +111,7 @@ if __name__ == "__main__":
     Rt, Rv = pickle.load(open(a.train, "rb")), pickle.load(open(a.val, "rb"))
     outdir = a.outdir or os.path.dirname(a.train)
     kind = Rt["kind"]
-    deltas = [-0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.5]
+    deltas = [-0.6, -0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.5]
     grid = []
     for lam, mu in itertools.product(cfg["control"]["lambda_grid"], cfg["control"]["mu_grid"]):
         S, V = stack(Rt, *utilities(Rt, lam, mu, cfg))

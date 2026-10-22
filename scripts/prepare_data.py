@@ -75,10 +75,18 @@ def techqa(args):
     if args.test and os.path.exists(os.path.join(root, args.test)):
         test = conv(os.path.join(root, args.test))
         val = dev
-    else:  # the held-out evaluation set is not always released: split dev 50/50 and DOCUMENT this deviation in the paper
-        random.Random(0).shuffle(dev)
-        val, test = dev[: len(dev) // 2], dev[len(dev) // 2 :]
-        print("WARNING: no test set found; dev was split 50/50 into val/test. Report this in the paper.")
+    else:  # the blind test set is not in the public release: test = official dev (310 q); val = stratified sample of train
+        rng = random.Random(0)
+        groups = [[r for r in train if r["answerable"]], [r for r in train if not r["answerable"]]]
+        n_train = len(train)
+        val = []
+        for g in groups:
+            rng.shuffle(g)
+            val += g[: round(args.val_n * len(g) / n_train)]
+        vids = {r["qid"] for r in val}
+        train = [r for r in train if r["qid"] not in vids]
+        test = dev
+        print("NOTE: no blind test set; test = official dev, val = %d questions carved from train. Report this in the paper." % len(val))
     for name, rows in (("train", train), ("val", val), ("test", test)):
         write_jsonl(os.path.join(out, f"{name}.jsonl"), rows)
         print(name, len(rows), "answerable:", sum(r["answerable"] for r in rows))
@@ -121,7 +129,7 @@ if __name__ == "__main__":
     b = sp.add_parser("techqa"); b.add_argument("--root", required=True); b.add_argument("--out", default="data/techqa")
     b.add_argument("--technotes", required=True); b.add_argument("--train", default="training_Q_A.json")
     b.add_argument("--dev", default="dev_Q_A.json"); b.add_argument("--test", default="eval_Q_A.json")
-    b.add_argument("--passage_words", type=int, default=200); b.add_argument("--passage_overlap", type=int, default=40)
+    b.add_argument("--val_n", type=int, default=100); b.add_argument("--passage_words", type=int, default=200); b.add_argument("--passage_overlap", type=int, default=40)
     c = sp.add_parser("engineering"); c.add_argument("--questions", required=True); c.add_argument("--corpus", required=True)
     c.add_argument("--out", default="data/engineering"); c.add_argument("--family_field", default="equipment_model")
     args = ap.parse_args()

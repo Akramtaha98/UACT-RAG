@@ -5,6 +5,7 @@ Queries are processed as a batch (round-synchronous) so vLLM is used efficiently
 with eval.batch_size = 1 (see scripts/run_eval.py).
 """
 import pickle
+import re
 
 import numpy as np
 
@@ -437,32 +438,48 @@ class UACT:
         return recs
 
 
+def parse_verdict(text):
+    """'VERDICT: CORRECT' / 'VERDICT: INCORRECT' (last occurrence wins); anything unparseable counts as incorrect."""
+    m = re.findall(r"VERDICT:\s*(INCORRECT|CORRECT)", text.upper())
+    return bool(m) and m[-1] == "CORRECT"
+
+
 def score_records(ctx, qs, recs, use_judge=None):
     """Add correctness / support fields. Not included in latency or cost."""
     cfg = ctx.cfg["eval"]
     use_judge = cfg["use_llm_judge"] if use_judge is None else use_judge
     ans_idx = [i for i, r in enumerate(recs) if r["answered"]]
-    judge = {}
+    judge, judge_text = {}, {}
     if use_judge and ans_idx:
-        msgs = [[{"role": "user", "content": JUDGE_PROMPT.format(q=qs[i]["question"], ref=qs[i].get("reference_answer", ""), ans=recs[i]["answer"])}] for i in ans_idx if qs[i]["answerable"]]
         keys = [i for i in ans_idx if qs[i]["answerable"]]
-        for i, p in zip(keys, ctx.llm.yes_prob(msgs)):
-            judge[i] = p > 0.5
+        msgs = [[{"role": "user", "content": JUDGE_PROMPT.format(q=qs[i]["question"], ref=qs[i].get("reference_answer", ""), ans=recs[i]["answer"])}] for i in keys]
+        for i, o in zip(keys, ctx.llm.generate(msgs, max_tokens=120, temperature=0.0)):
+            judge[i], judge_text[i] = parse_verdict(o["text"]), o["text"]
+    grounded = cfg.get("grounded_correctness", True)
     for i, (q, r) in enumerate(zip(qs, recs)):
         f1 = token_f1(r["answer"], q.get("reference_answer", "")) if (r["answered"] and q["answerable"]) else 0.0
         r["f1"] = f1
+        gold = set(q.get("gold_evidence_ids") or [])
+        ev = r.get("evidence") or []
+        gold_hit = bool(gold & ({p.get("doc_id") for p in ev} | {p.get("pid") for p in ev}))
         if not r["answered"]:
             r["correct"], r["error"] = False, 0
         elif not q["answerable"]:
             r["correct"], r["error"] = False, 1
         else:
-            r["correct"] = bool(judge[i]) if use_judge else f1 >= cfg["f1_correct_threshold"]
+            if grounded and gold:  # primary rule, validated against a human audit
+                r["correct"] = bool(gold_hit and f1 >= cfg["f1_correct_threshold"])
+            elif use_judge:
+                r["correct"] = bool(judge[i])
+            else:
+                r["correct"] = f1 >= cfg["f1_correct_threshold"]
+            if i in judge:  # LLM judge logged as a secondary metric
+                r["judge_correct"], r["judge_text"] = bool(judge[i]), judge_text[i]
             r["error"] = int(not r["correct"])
         if r["answered"] and ctx.verifier is not None and r["evidence"]:
             v = ctx.verifier.verify(r["answer"], r["evidence"])
             r["support_rate"], r["all_supported"] = v["support_rate"], v["all_supported"]
             r["n_unsupported_claims"], r["n_claims"] = len(v["unsupported"]), len(v["claims"])
-        gold = set(q.get("gold_evidence_ids") or [])
         if gold:
             seen = {p["pid"] for p in r["evidence"]} | {p.get("doc_id") for p in r["evidence"]}
             r["gold_recall"] = float(len(gold & seen) / len(gold))
