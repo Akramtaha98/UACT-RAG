@@ -12,6 +12,9 @@ echo "== A1. ECE under both definitions, per slice =="
 python scripts/plot_reliability.py --states_dir data/states $DATA/states --variant $WD/full --out figures | tee logs/rev_ece.log
 echo "== A2. passage / technote overlap between splits =="
 python scripts/revision_analyses.py overlap --states_dir data/states $DATA/states --techqa_dir $DATA --out $OUT
+echo "== A2b. question-text collisions and overlap-free AUROC =="
+python scripts/revision_analyses.py collisions --states_dir data/states $DATA/states --out $OUT
+python scripts/revision_analyses.py overlap_free_auroc --states_dir data/states $DATA/states --variant $WD/full --out $OUT
 echo "== A3. AUROC with question-level (cluster) bootstrap =="
 python scripts/revision_analyses.py cluster_auroc --states_dir data/states $DATA/states --variant $WD/full --out $OUT
 echo "== A4. risk at matched coverage (forced runs) =="

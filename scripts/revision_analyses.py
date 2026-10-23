@@ -242,10 +242,83 @@ def cmd_actions(a):
     save(a.out, "actions", rep)
 
 
+# ------------------------------------------------------------------ question-text collisions
+def cmd_collisions(a):
+    """Which question texts occur in more than one source slice or across splits? Explains why the number of unique test
+    questions (376) is smaller than synthetic (223) + TechQA (310), and checks train/test question collisions."""
+    norm = lambda r: " ".join(r["question"].lower().split())
+    rep = {}
+    by = {}
+    for sp in ("train", "val", "calib", "test"):
+        rows = load_states(a.states_dir, sp)
+        by[sp] = rows
+    for sp, rows in by.items():
+        syn = {norm(r) for r in rows if r.get("source", "") != "techqa_retrieved"}
+        real = {norm(r) for r in rows if r.get("source", "") == "techqa_retrieved"}
+        rep[sp] = {"states": len(rows), "synthetic_questions": len(syn), "techqa_questions": len(real),
+                   "texts_in_both_slices": len(syn & real),
+                   "synthetic_source_values": sorted({str(r.get("source", "")) for r in rows})[:10],
+                   "keys_example": sorted(rows[0].keys()) if rows else []}
+    tr = {norm(r) for r in by["train"]}
+    for sp in ("val", "calib", "test"):
+        q = {norm(r) for r in by[sp]}
+        rep[sp]["question_texts_also_in_train"] = len(q & tr)
+        rep[sp]["share_of_questions_also_in_train"] = round(len(q & tr) / max(len(q), 1), 4)
+    save(a.out, "collisions", rep)
+
+
+# ------------------------------------------------------------------ overlap-free evaluation
+def cmd_overlap_free_auroc(a):
+    """AUROC of the estimator and baselines on test states WITHOUT passage overlap with training text (no passage shares >= thr
+    of its 8-word shingles with any training passage). A document-disjoint proxy; question-level bootstrap."""
+    from sklearn.metrics import roc_auc_score
+    from uact.estimator import Estimator, bad_indices, map_label, state_names
+    from uact.features import FEATURE_NAMES
+    train_sh = set()
+    for r in load_states(a.states_dir, "train"):
+        for p in passages_of(r):
+            train_sh |= shingles(p)
+    rows = load_states(a.states_dir, "test")
+    X = np.load(os.path.join(a.variant, "feat_test.npy"))
+    assert len(rows) == len(X)
+    def overlapped(r):
+        for p in passages_of(r):
+            sh = shingles(p)
+            if sh and len(sh & train_sh) / len(sh) >= a.thr:
+                return True
+        return False
+    ov = np.array([overlapped(r) for r in rows])
+    est = Estimator.load(os.path.join(a.variant, "estimator.pt"))
+    names = state_names(est.kind)
+    y = np.array([names.index(map_label(r["state"], est.kind)) for r in rows])
+    bad = np.isin(y, bad_indices(est.kind)).astype(int)
+    P = est.predict_proba(X)
+    fi = {n: i for i, n in enumerate(FEATURE_NAMES)}
+    scores = {"estimator": P[:, bad_indices(est.kind)].sum(1), "top1_sim": 1 - X[:, fi["rerank_top1"]], "llm_autorater": 1 - X[:, fi["llm_suff"]]}
+    src = np.array([r.get("source", "") for r in rows]); qid = np.array([r["question"].strip().lower() for r in rows])
+    rng = np.random.default_rng(0); rep = {"threshold": a.thr}
+    for g, m0 in (("all", np.ones(len(rows), bool)), ("synthetic", src != "techqa_retrieved"), ("techqa", src == "techqa_retrieved")):
+        for tag, m in (("overlapping", m0 & ov), ("overlap_free", m0 & ~ov)):
+            idx = np.where(m)[0]
+            if len(idx) < 30 or not (0 < bad[idx].sum() < len(idx)):
+                rep[f"{g}_{tag}"] = {"states": int(len(idx)), "note": "too few states or one class"}; continue
+            qs = np.unique(qid[idx]); by_q = {q: idx[qid[idx] == q] for q in qs}
+            row = {"states": int(len(idx)), "questions": int(len(qs)), "insufficient_prevalence": round(float(bad[idx].mean()), 3)}
+            for nm, s in scores.items():
+                v = []
+                for _ in range(a.boot):
+                    ii = np.concatenate([by_q[q] for q in rng.choice(qs, len(qs))])
+                    if 0 < bad[ii].sum() < len(ii):
+                        v.append(roc_auc_score(bad[ii], s[ii]))
+                row[nm] = {"auroc": round(float(roc_auc_score(bad[idx], s[idx])), 3), "ci95": [round(float(np.percentile(v, 2.5)), 3), round(float(np.percentile(v, 97.5)), 3)]}
+            rep[f"{g}_{tag}"] = row
+    save(a.out, "overlap_free_auroc", rep)
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     sp = ap.add_subparsers(dest="cmd", required=True)
-    for nm in ("overlap", "cluster_auroc", "matched_coverage", "actions"):
+    for nm in ("overlap", "cluster_auroc", "matched_coverage", "actions", "collisions", "overlap_free_auroc"):
         p = sp.add_parser(nm)
         p.add_argument("--out", default="runs/main/revision")
         p.add_argument("--states_dir", nargs="+", default=["data/states", "data/techqa/states"])
@@ -256,5 +329,6 @@ if __name__ == "__main__":
         p.add_argument("--main", default="UACT")
         p.add_argument("--coverages", nargs="+", type=float, default=[0.1, 0.2, 0.3, 0.5])
         p.add_argument("--boot", type=int, default=1000)
+        p.add_argument("--thr", type=float, default=0.5)
     a = ap.parse_args()
-    {"overlap": cmd_overlap, "cluster_auroc": cmd_cluster_auroc, "matched_coverage": cmd_matched_coverage, "actions": cmd_actions}[a.cmd](a)
+    {"overlap": cmd_overlap, "cluster_auroc": cmd_cluster_auroc, "matched_coverage": cmd_matched_coverage, "actions": cmd_actions, "collisions": cmd_collisions, "overlap_free_auroc": cmd_overlap_free_auroc}[a.cmd](a)
