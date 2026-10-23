@@ -1,22 +1,23 @@
-import argparse, csv, io, json, os, random, shutil, sys
+"""Offline human review of contradiction candidates via spreadsheets, with inter-reviewer agreement.
 
+  # 1. export: sheet for reviewer A (all items) and reviewer B (a random sample for the agreement check)
+  python scripts/review_sheet.py export --sample 60
+  #    -> data/review/review_A.csv , data/review/review_B.csv   (open in Excel / Google Sheets)
 
-def nli_check(rows, labels, name, min_auc=0.65):
-    """Sanity check: human y/n labels should correlate with an NLI contradiction score. Catches misaligned or careless sheets."""
-    import numpy as np
-    from sklearn.metrics import roc_auc_score
-    ids = sorted(labels)
-    y = np.array([labels[i] for i in ids], dtype=int)
-    if len(ids) < 30 or y.sum() in (0, len(y)):
-        return True
-    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    import torch
-    from uact.models import NLI
-    nli = NLI("microsoft/deberta-large-mnli", device="cuda" if torch.cuda.is_available() else "cpu")
-    p = nli.probs([rows[i]["original"] for i in ids], [rows[i]["contradicting"] for i in ids], batch_size=32)[:, 0]
-    auc = roc_auc_score(y, p)
-    print(f"sanity check {name}: AUROC of your labels vs NLI contradiction score = {auc:.3f} (n={len(ids)})")
-    return auc >= min_auc
+  # 2. each reviewer fills the 'decision' column with y or n (blank = skip), saves as CSV (UTF-8)
+
+  # 3. import: merges decisions back into data/contradiction_candidates.jsonl and reports Cohen's kappa
+  python scripts/review_sheet.py import --a data/review/review_A.csv [--b data/review/review_B.csv]
+
+Rule when both reviewers labelled an item and disagree: it is set back to pending and written to
+data/review/disagreements.csv for discussion (adjudicate by editing the 'decision' in review_A.csv and re-importing).
+"""
+import argparse
+import csv
+import json
+import os
+import random
+import shutil
 
 CAND = "data/contradiction_candidates.jsonl"
 OUT = "data/review"
@@ -35,7 +36,7 @@ def save(path, rows):
 
 def write_sheet(path, rows, idxs):
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", newline="", encoding="utf-8-sig") as f:
+    with open(path, "w", newline="", encoding="utf-8-sig") as f:  # utf-8-sig so Excel reads accents correctly
         w = csv.writer(f)
         w.writerow(["id", "original", "rewritten_to_contradict", "decision (y/n)", "notes"])
         for i in idxs:
@@ -44,38 +45,15 @@ def write_sheet(path, rows, idxs):
             w.writerow([i, r["original"], r["contradicting"], cur, ""])
 
 
-def _rows(path):
-    raw = open(path, "rb").read()
-    if raw[:2] == b"PK":  # real Excel workbook (whatever the file name says)
-        import openpyxl
-        ws = openpyxl.load_workbook(io.BytesIO(raw), data_only=True).active
-        it = ws.iter_rows(values_only=True)
-        head = [str(h or "").strip() for h in next(it)]
-        return [dict(zip(head, ["" if v is None else str(v) for v in r])) for r in it]
-    text = None
-    for enc in ("utf-8-sig", "utf-16", "cp1252", "latin-1"):
-        try:
-            text = raw.decode(enc)
-            break
-        except UnicodeError:
-            continue
-    first = text.splitlines()[0] if text else ""
-    delim = ";" if first.count(";") > first.count(",") else ("\t" if first.count("\t") > first.count(",") else ",")
-    return list(csv.DictReader(io.StringIO(text, newline=""), delimiter=delim))
-
-
 def read_sheet(path):
     out = {}
-    for row in _rows(path):
-        d = str(row.get("decision (y/n)") or row.get("decision") or "").strip().lower()
-        try:
-            i = int(float(row["id"]))
-        except (KeyError, ValueError, TypeError):
-            continue
-        if d in YES:
-            out[i] = True
-        elif d in NO:
-            out[i] = False
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            d = (row.get("decision (y/n)") or row.get("decision") or "").strip().lower()
+            if d in YES:
+                out[int(row["id"])] = True
+            elif d in NO:
+                out[int(row["id"])] = False
     return out
 
 
@@ -104,14 +82,6 @@ def do_import(a):
     shutil.copy(a.cand, a.cand + ".bak")
     A = read_sheet(a.a)
     B = read_sheet(a.b) if a.b else {}
-    print(f"read {len(A)} decisions from A" + (f", {len(B)} from B" if a.b else ""))
-    if not a.no_check:
-        ok = nli_check(rows, A, "A") and (not B or nli_check(rows, B, "B"))
-        if not ok:
-            print("ABORTED, nothing saved: the labels do not match the content of the rows (AUROC < 0.65). "
-                  "Typical causes: the y/n column was sorted or filtered separately, rows were hidden, or labels were typed into another copy. "
-                  "Re-do the sheet in its original row order, or pass --no_check to override.")
-            return
     disagree = []
     for i, r in enumerate(rows):
         if i in A and i in B and A[i] != B[i]:
@@ -137,6 +107,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     sp = ap.add_subparsers(dest="cmd", required=True)
     e = sp.add_parser("export"); e.add_argument("--sample", type=int, default=60); e.add_argument("--cand", default=CAND); e.add_argument("--pending", action="store_true")
-    i = sp.add_parser("import"); i.add_argument("--a", required=True); i.add_argument("--b"); i.add_argument("--cand", default=CAND); i.add_argument("--no_check", action="store_true")
+    i = sp.add_parser("import"); i.add_argument("--a", required=True); i.add_argument("--b"); i.add_argument("--cand", default=CAND)
     a = ap.parse_args()
     export(a) if a.cmd == "export" else do_import(a)

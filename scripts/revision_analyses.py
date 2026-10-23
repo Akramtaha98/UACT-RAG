@@ -32,7 +32,7 @@ def load_states(dirs, split):
     rows = []
     for d in dirs:
         for suf in ("", "_retrieved"):
-            for nm in ([split, "validation"] if split == "val" else [split, "calibration"] if split == "calib" else [split]):
+            for nm in ([split, "validation"] if split == "val" else [split, "calibration", "cal"] if split == "calib" else [split]):
                 p = os.path.join(d, f"{nm}{suf}.jsonl")
                 if os.path.exists(p):
                     rows += read_jsonl(p)
@@ -315,10 +315,52 @@ def cmd_overlap_free_auroc(a):
     save(a.out, "overlap_free_auroc", rep)
 
 
+# ------------------------------------------------------------------ by dataset
+def cmd_by_dataset(a):
+    """Estimator vs baselines separately for constructed emanual states, constructed RAGBench-techqa states and real TechQA
+    retrieval states (question-level bootstrap). The synthetic slice mixes emanual and techqa; this separates them."""
+    from sklearn.metrics import roc_auc_score
+    from uact.estimator import Estimator, bad_indices, map_label, state_names
+    from uact.features import FEATURE_NAMES
+    rows = load_states(a.states_dir, "test")
+    X = np.load(os.path.join(a.variant, "feat_test.npy"))
+    assert len(rows) == len(X)
+    est = Estimator.load(os.path.join(a.variant, "estimator.pt"))
+    names = state_names(est.kind)
+    y = np.array([names.index(map_label(r["state"], est.kind)) for r in rows])
+    bad = np.isin(y, bad_indices(est.kind)).astype(int)
+    P = est.predict_proba(X)
+    fi = {n: i for i, n in enumerate(FEATURE_NAMES)}
+    scores = {"estimator": P[:, bad_indices(est.kind)].sum(1), "top1_sim": 1 - X[:, fi["rerank_top1"]], "llm_autorater": 1 - X[:, fi["llm_suff"]]}
+    grp = np.array(["real_techqa_retrieval" if r.get("source") == "techqa_retrieved" else ("constructed_" + str(r["id"]).split("_")[0].split(":")[0]) for r in rows])
+    qid = np.array([r["question"].strip().lower() for r in rows])
+    rng = np.random.default_rng(0); rep = {}
+    for g in sorted(set(grp)):
+        idx = np.where(grp == g)[0]
+        qs = np.unique(qid[idx]); by_q = {q: idx[qid[idx] == q] for q in qs}
+        row = {"states": int(len(idx)), "questions": int(len(qs)), "insufficient_prevalence": round(float(bad[idx].mean()), 3)}
+        if not (0 < bad[idx].sum() < len(idx)):
+            rep[g] = row; continue
+        diffs = {n: [] for n in scores if n != "estimator"}
+        for nm, s_ in scores.items():
+            v = []
+            for _ in range(a.boot):
+                ii = np.concatenate([by_q[q] for q in rng.choice(qs, len(qs))])
+                if 0 < bad[ii].sum() < len(ii):
+                    v.append(roc_auc_score(bad[ii], s_[ii]))
+                    if nm != "estimator":
+                        diffs[nm].append(roc_auc_score(bad[ii], scores["estimator"][ii]) - v[-1])
+            row[nm] = {"auroc": round(float(roc_auc_score(bad[idx], s_[idx])), 3), "ci95": [round(float(np.percentile(v, 2.5)), 3), round(float(np.percentile(v, 97.5)), 3)]}
+            if nm != "estimator":
+                row[nm]["estimator_minus_this_ci95"] = [round(float(np.percentile(diffs[nm], 2.5)), 3), round(float(np.percentile(diffs[nm], 97.5)), 3)]
+        rep[g] = row
+    save(a.out, "by_dataset", rep)
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     sp = ap.add_subparsers(dest="cmd", required=True)
-    for nm in ("overlap", "cluster_auroc", "matched_coverage", "actions", "collisions", "overlap_free_auroc"):
+    for nm in ("overlap", "cluster_auroc", "matched_coverage", "actions", "collisions", "overlap_free_auroc", "by_dataset"):
         p = sp.add_parser(nm)
         p.add_argument("--out", default="runs/main/revision")
         p.add_argument("--states_dir", nargs="+", default=["data/states", "data/techqa/states"])
@@ -331,4 +373,4 @@ if __name__ == "__main__":
         p.add_argument("--boot", type=int, default=1000)
         p.add_argument("--thr", type=float, default=0.5)
     a = ap.parse_args()
-    {"overlap": cmd_overlap, "cluster_auroc": cmd_cluster_auroc, "matched_coverage": cmd_matched_coverage, "actions": cmd_actions, "collisions": cmd_collisions, "overlap_free_auroc": cmd_overlap_free_auroc}[a.cmd](a)
+    {"overlap": cmd_overlap, "cluster_auroc": cmd_cluster_auroc, "matched_coverage": cmd_matched_coverage, "actions": cmd_actions, "collisions": cmd_collisions, "overlap_free_auroc": cmd_overlap_free_auroc, "by_dataset": cmd_by_dataset}[a.cmd](a)

@@ -36,4 +36,5 @@ if [ -n "${REFIT:-}" ]; then
   CUDA_VISIBLE_DEVICES=$G python scripts/run_eval.py --config configs/revision.yaml --data $DATA --split test --systems B6 B8 B9 --forced > logs/rev_refit_forced.log 2>&1
   echo "Refit results: $RW/eval/techqa_test  (compare with $EV; report as a post-hoc rerun)"
 fi
+python scripts/revision_analyses.py by_dataset --states_dir data/states $DATA/states --variant $WD/full --out $OUT
 echo REVISION DONE

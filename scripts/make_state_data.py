@@ -90,7 +90,7 @@ def candidates(a, cfg):
     outs = llm.generate(msgs, max_tokens=100)
     new = [{"source_id": i, "original": s, "contradicting": o["text"], "reviewed": None, "split": a.split}
            for (i, s), o in zip(srcs, outs)]
-    write_jsonl(cp, old + new)
+    write_jsonl(cp, old + new)  # with --append, earlier reviewed items stay first and keep their decisions
     print(f"Wrote {len(new)} new candidates ({len(old)} kept). A reviewer must label the new ones before 'build'.")
 
 
@@ -101,7 +101,7 @@ def build(a, cfg):
     if os.path.exists(cp):
         for c in read_jsonl(cp):
             if c["reviewed"] is True or (a.allow_unreviewed and c["reviewed"] is None):
-                appr[(c["source_id"], c["original"])] = c
+                appr[(c["source_id"], c["original"])] = c  # keyed by id AND sentence so a repeated id cannot mismatch
     if a.allow_unreviewed:
         print("WARNING: unreviewed contradictions included -> development use only.")
     out = {"train": [], "val": [], "cal": [], "test": []}
@@ -111,7 +111,7 @@ def build(a, cfg):
             continue
         pool = list(rows)
         for e in rows:
-            tgt = names[int(hashlib.md5(e["question"].encode()).hexdigest(), 16) % len(names)]  # split by QUESTION
+            tgt = names[int(hashlib.md5(e["question"].encode()).hexdigest(), 16) % len(names)]  # split by QUESTION, so val/cal never share one
             eid = e["id"]
             rel = _relevant_sentences(e)
             comp = e.get("completeness_score")
@@ -131,12 +131,12 @@ def build(a, cfg):
                         items.append(("contradictory", _docs_text(e) + [appr[(eid, sent)]["contradicting"]], "reviewed_contradiction"))
                         break
             other = rng.choice(pool)
-            if other["question"] != e["question"]:
+            if other["question"] != e["question"]:  # ids repeat in RAGBench; compare the question text
                 items.append(("irrelevant", _docs_text(other), "context_swapped"))
             for lab, texts, src in items:
                 out[tgt].append({"id": f"{eid}:{src}", "question": e["question"], "passages": _passages(texts, f"{eid}:{src}"),
                                  "state": lab, "source": src, "reviewed": True if src != "reviewed_contradiction" else (lab == "contradictory")})
-    for k in out:
+    for k in out:  # drop exact duplicates (same question, label and passages) that come from repeated RAGBench rows
         seen, kept = set(), []
         for r in out[k]:
             key = (r["question"], r["state"], json.dumps([p["text"] for p in r["passages"]]))
@@ -145,7 +145,7 @@ def build(a, cfg):
                 kept.append(r)
         print(f"{k}: removed {len(out[k]) - len(kept)} duplicate states")
         out[k] = kept
-    qs = {k: {r["question"] for r in out[k]} for k in out}
+    qs = {k: {r["question"] for r in out[k]} for k in out}  # no question may appear in more than one split
     for k, others in (("train", ("val", "cal", "test")), ("val", ("test",)), ("cal", ("test",))):
         bad = set().union(*[qs[o] for o in others])
         n0 = len(out[k])
