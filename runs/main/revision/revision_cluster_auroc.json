@@ -1,0 +1,104 @@
+{
+  "all": {
+    "states": 1326,
+    "questions": 376,
+    "states_per_question": 3.53,
+    "estimator": {
+      "auroc": 0.849,
+      "ci95": [
+        0.829,
+        0.868
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.756,
+      "ci95": [
+        0.734,
+        0.777
+      ],
+      "estimator_minus_this_ci95": [
+        0.073,
+        0.114
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.793,
+      "ci95": [
+        0.767,
+        0.818
+      ],
+      "estimator_minus_this_ci95": [
+        0.035,
+        0.078
+      ]
+    }
+  },
+  "synthetic": {
+    "states": 1016,
+    "questions": 223,
+    "states_per_question": 4.56,
+    "estimator": {
+      "auroc": 0.893,
+      "ci95": [
+        0.875,
+        0.909
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.812,
+      "ci95": [
+        0.792,
+        0.83
+      ],
+      "estimator_minus_this_ci95": [
+        0.065,
+        0.098
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.825,
+      "ci95": [
+        0.8,
+        0.851
+      ],
+      "estimator_minus_this_ci95": [
+        0.047,
+        0.091
+      ]
+    }
+  },
+  "techqa": {
+    "states": 310,
+    "questions": 310,
+    "states_per_question": 1.0,
+    "estimator": {
+      "auroc": 0.667,
+      "ci95": [
+        0.608,
+        0.733
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.634,
+      "ci95": [
+        0.562,
+        0.695
+      ],
+      "estimator_minus_this_ci95": [
+        -0.034,
+        0.102
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.697,
+      "ci95": [
+        0.635,
+        0.757
+      ],
+      "estimator_minus_this_ci95": [
+        -0.08,
+        0.018
+      ]
+    }
+  }
+}

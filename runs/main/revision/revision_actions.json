@@ -1,0 +1,122 @@
+{
+  "UACT": {
+    "n": 310,
+    "step_actions": {
+      "ABSTAIN": 257,
+      "ANSWER": 53,
+      "RETRIEVE": 10
+    },
+    "first_action": {
+      "ABSTAIN": 255,
+      "ANSWER": 51,
+      "RETRIEVE": 4
+    },
+    "questions_with_retrieve": 4,
+    "retrieve_then_P_sufficient_up": 0,
+    "retrieve_then_P_sufficient_down": 0,
+    "retrieve_unchanged": 4,
+    "answered": 20,
+    "answered_correct_proxy": 12,
+    "mean_retrieval_calls": 1.032,
+    "mean_prompt_tokens": 671.0,
+    "mean_gen_tokens": 66.7,
+    "with_extra_retrieval": {
+      "n": 4,
+      "answered": 2,
+      "selective_risk_proxy": 0.0
+    },
+    "without": {
+      "n": 306,
+      "answered": 18,
+      "selective_risk_proxy": 0.444
+    }
+  },
+  "A6": {
+    "n": 310,
+    "step_actions": {
+      "RETRIEVE": 229,
+      "ABSTAIN": 268,
+      "ANSWER": 42
+    },
+    "first_action": {
+      "RETRIEVE": 87,
+      "ABSTAIN": 190,
+      "ANSWER": 33
+    },
+    "questions_with_retrieve": 87,
+    "retrieve_then_P_sufficient_up": 6,
+    "retrieve_then_P_sufficient_down": 11,
+    "retrieve_unchanged": 70,
+    "answered": 22,
+    "answered_correct_proxy": 13,
+    "mean_retrieval_calls": 1.739,
+    "mean_prompt_tokens": 653.6,
+    "mean_gen_tokens": 66.8,
+    "with_extra_retrieval": {
+      "n": 87,
+      "answered": 6,
+      "selective_risk_proxy": 0.333
+    },
+    "without": {
+      "n": 223,
+      "answered": 16,
+      "selective_risk_proxy": 0.438
+    }
+  },
+  "A7": {
+    "n": 310,
+    "step_actions": {
+      "ABSTAIN": 263,
+      "RETRIEVE": 229,
+      "ANSWER": 47
+    },
+    "first_action": {
+      "ABSTAIN": 198,
+      "RETRIEVE": 85,
+      "ANSWER": 27
+    },
+    "questions_with_retrieve": 85,
+    "retrieve_then_P_sufficient_up": 7,
+    "retrieve_then_P_sufficient_down": 5,
+    "retrieve_unchanged": 73,
+    "answered": 21,
+    "answered_correct_proxy": 12,
+    "mean_retrieval_calls": 1.739,
+    "mean_prompt_tokens": 743.3,
+    "mean_gen_tokens": 74.6,
+    "with_extra_retrieval": {
+      "n": 85,
+      "answered": 8,
+      "selective_risk_proxy": 0.375
+    },
+    "without": {
+      "n": 225,
+      "answered": 13,
+      "selective_risk_proxy": 0.462
+    }
+  },
+  "B8": {
+    "n": 310,
+    "step_actions": {},
+    "first_action": {},
+    "questions_with_retrieve": 0,
+    "retrieve_then_P_sufficient_up": 0,
+    "retrieve_then_P_sufficient_down": 0,
+    "retrieve_unchanged": 0,
+    "answered": 166,
+    "answered_correct_proxy": 40,
+    "mean_retrieval_calls": 3.739,
+    "mean_prompt_tokens": 8628.4,
+    "mean_gen_tokens": 1060.0,
+    "with_extra_retrieval": {
+      "n": 285,
+      "answered": 141,
+      "selective_risk_proxy": 0.773
+    },
+    "without": {
+      "n": 25,
+      "answered": 25,
+      "selective_risk_proxy": 0.68
+    }
+  }
+}

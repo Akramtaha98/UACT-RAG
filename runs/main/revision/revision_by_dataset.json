@@ -1,0 +1,104 @@
+{
+  "constructed_emanual": {
+    "states": 336,
+    "questions": 66,
+    "insufficient_prevalence": 0.735,
+    "estimator": {
+      "auroc": 0.944,
+      "ci95": [
+        0.923,
+        0.961
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.826,
+      "ci95": [
+        0.796,
+        0.855
+      ],
+      "estimator_minus_this_ci95": [
+        0.092,
+        0.144
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.855,
+      "ci95": [
+        0.815,
+        0.894
+      ],
+      "estimator_minus_this_ci95": [
+        0.054,
+        0.124
+      ]
+    }
+  },
+  "constructed_techqa": {
+    "states": 680,
+    "questions": 157,
+    "insufficient_prevalence": 0.734,
+    "estimator": {
+      "auroc": 0.858,
+      "ci95": [
+        0.834,
+        0.882
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.811,
+      "ci95": [
+        0.784,
+        0.837
+      ],
+      "estimator_minus_this_ci95": [
+        0.027,
+        0.068
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.818,
+      "ci95": [
+        0.786,
+        0.85
+      ],
+      "estimator_minus_this_ci95": [
+        0.015,
+        0.068
+      ]
+    }
+  },
+  "real_techqa_retrieval": {
+    "states": 310,
+    "questions": 310,
+    "insufficient_prevalence": 0.665,
+    "estimator": {
+      "auroc": 0.667,
+      "ci95": [
+        0.609,
+        0.728
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.634,
+      "ci95": [
+        0.564,
+        0.698
+      ],
+      "estimator_minus_this_ci95": [
+        -0.036,
+        0.105
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.697,
+      "ci95": [
+        0.633,
+        0.76
+      ],
+      "estimator_minus_this_ci95": [
+        -0.08,
+        0.02
+      ]
+    }
+  }
+}
