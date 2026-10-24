@@ -1,0 +1,195 @@
+{
+  "n_states": 8102,
+  "n_groups": 896,
+  "largest_group_share": 0.0743,
+  "seeds": 5,
+  "folds": 5,
+  "max_df": 5,
+  "slices": {
+    "all": {
+      "states": 8102,
+      "questions": 1533,
+      "estimator_auroc_mean_over_seeds": 0.889,
+      "estimator_auroc_sd_over_seeds": 0.002,
+      "estimator_ci95_question_bootstrap": [
+        0.883,
+        0.895
+      ],
+      "top1_similarity_auroc": 0.805,
+      "top1_similarity_ci95": [
+        0.796,
+        0.812
+      ],
+      "llm_autorater_auroc": 0.837,
+      "llm_autorater_ci95": [
+        0.828,
+        0.846
+      ],
+      "estimator_minus_top1_ci95": [
+        0.077,
+        0.092
+      ],
+      "estimator_minus_autorater_ci95": [
+        0.045,
+        0.058
+      ],
+      "ece_P_insufficient_mean_over_seeds": 0.028,
+      "ece_P_insufficient_sd_over_seeds": 0.002,
+      "per_seed_auroc": [
+        0.89,
+        0.885,
+        0.889,
+        0.889,
+        0.891
+      ]
+    },
+    "synthetic": {
+      "states": 7192,
+      "questions": 1528,
+      "estimator_auroc_mean_over_seeds": 0.906,
+      "estimator_auroc_sd_over_seeds": 0.001,
+      "estimator_ci95_question_bootstrap": [
+        0.9,
+        0.911
+      ],
+      "top1_similarity_auroc": 0.829,
+      "top1_similarity_ci95": [
+        0.822,
+        0.836
+      ],
+      "llm_autorater_auroc": 0.848,
+      "llm_autorater_ci95": [
+        0.841,
+        0.857
+      ],
+      "estimator_minus_top1_ci95": [
+        0.069,
+        0.082
+      ],
+      "estimator_minus_autorater_ci95": [
+        0.05,
+        0.064
+      ],
+      "ece_P_insufficient_mean_over_seeds": 0.026,
+      "ece_P_insufficient_sd_over_seeds": 0.002,
+      "per_seed_auroc": [
+        0.907,
+        0.904,
+        0.905,
+        0.906,
+        0.907
+      ]
+    },
+    "techqa_real": {
+      "states": 910,
+      "questions": 881,
+      "estimator_auroc_mean_over_seeds": 0.707,
+      "estimator_auroc_sd_over_seeds": 0.016,
+      "estimator_ci95_question_bootstrap": [
+        0.678,
+        0.738
+      ],
+      "top1_similarity_auroc": 0.657,
+      "top1_similarity_ci95": [
+        0.622,
+        0.692
+      ],
+      "llm_autorater_auroc": 0.726,
+      "llm_autorater_ci95": [
+        0.691,
+        0.758
+      ],
+      "estimator_minus_top1_ci95": [
+        0.012,
+        0.088
+      ],
+      "estimator_minus_autorater_ci95": [
+        -0.041,
+        0.006
+      ],
+      "ece_P_insufficient_mean_over_seeds": 0.068,
+      "ece_P_insufficient_sd_over_seeds": 0.017,
+      "per_seed_auroc": [
+        0.71,
+        0.681,
+        0.724,
+        0.707,
+        0.714
+      ]
+    },
+    "constructed_emanual": {
+      "states": 3254,
+      "questions": 652,
+      "estimator_auroc_mean_over_seeds": 0.941,
+      "estimator_auroc_sd_over_seeds": 0.003,
+      "estimator_ci95_question_bootstrap": [
+        0.933,
+        0.948
+      ],
+      "top1_similarity_auroc": 0.844,
+      "top1_similarity_ci95": [
+        0.833,
+        0.855
+      ],
+      "llm_autorater_auroc": 0.858,
+      "llm_autorater_ci95": [
+        0.845,
+        0.872
+      ],
+      "estimator_minus_top1_ci95": [
+        0.089,
+        0.105
+      ],
+      "estimator_minus_autorater_ci95": [
+        0.071,
+        0.094
+      ],
+      "ece_P_insufficient_mean_over_seeds": 0.032,
+      "ece_P_insufficient_sd_over_seeds": 0.004,
+      "per_seed_auroc": [
+        0.941,
+        0.937,
+        0.94,
+        0.945,
+        0.942
+      ]
+    },
+    "constructed_techqa": {
+      "states": 3938,
+      "questions": 876,
+      "estimator_auroc_mean_over_seeds": 0.865,
+      "estimator_auroc_sd_over_seeds": 0.003,
+      "estimator_ci95_question_bootstrap": [
+        0.857,
+        0.873
+      ],
+      "top1_similarity_auroc": 0.83,
+      "top1_similarity_ci95": [
+        0.821,
+        0.839
+      ],
+      "llm_autorater_auroc": 0.844,
+      "llm_autorater_ci95": [
+        0.833,
+        0.855
+      ],
+      "estimator_minus_top1_ci95": [
+        0.027,
+        0.043
+      ],
+      "estimator_minus_autorater_ci95": [
+        0.013,
+        0.03
+      ],
+      "ece_P_insufficient_mean_over_seeds": 0.024,
+      "ece_P_insufficient_sd_over_seeds": 0.002,
+      "per_seed_auroc": [
+        0.869,
+        0.865,
+        0.863,
+        0.861,
+        0.867
+      ]
+    }
+  }
+}
