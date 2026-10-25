@@ -94,7 +94,9 @@ def feasible_rank(rows, risk_target, min_cov):
     ok = [r for r in rows if r["stats"]["coverage"] >= min_cov and not np.isnan(r["stats"]["selective_risk"]) and r["stats"]["selective_risk"] <= risk_target]
     if ok:
         return min(ok, key=lambda r: r["stats"]["mean_cost"])
-    return min(rows, key=lambda r: (np.nan_to_num(r["stats"]["selective_risk"], nan=9), r["stats"]["mean_cost"]))
+    # fallback (as in the reported runs): lowest risk among points with coverage >= min_cov; if none, lowest risk overall
+    cov = [r for r in rows if r["stats"]["coverage"] >= min_cov] or rows
+    return min(cov, key=lambda r: (np.nan_to_num(r["stats"]["selective_risk"], nan=9), r["stats"]["mean_cost"]))
 
 
 if __name__ == "__main__":
@@ -102,15 +104,15 @@ if __name__ == "__main__":
     ap.add_argument("--config", default="configs/default.yaml")
     ap.add_argument("--train", required=True)
     ap.add_argument("--val", required=True)
-    ap.add_argument("--risk_target", type=float, default=0.10)
-    ap.add_argument("--min_coverage", type=float, default=0.50)
+    ap.add_argument("--risk_target", type=float, default=0.40)  # value used for the reported runs
+    ap.add_argument("--min_coverage", type=float, default=0.20)  # value used for the reported runs
     ap.add_argument("--outdir", default=None)
     a = ap.parse_args()
     cfg = load_config(a.config)
     Rt, Rv = pickle.load(open(a.train, "rb")), pickle.load(open(a.val, "rb"))
     outdir = a.outdir or os.path.dirname(a.train)
     kind = Rt["kind"]
-    deltas = [-0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.5]
+    deltas = [-0.6, -0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.5]  # grid of the reported runs
     grid = []
     for lam, mu in itertools.product(cfg["control"]["lambda_grid"], cfg["control"]["mu_grid"]):
         S, V = stack(Rt, *utilities(Rt, lam, mu, cfg))

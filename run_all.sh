@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# End-to-end pipeline on one H200. Usage:  bash run_all.sh data/techqa
+# End-to-end pipeline on a single GPU. Usage:  bash run_all.sh data/techqa
 # Prerequisites: data prepared (see README), indexes built, state data built.
 set -euo pipefail
 DATA=${1:-data/techqa}

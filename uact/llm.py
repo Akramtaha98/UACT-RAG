@@ -38,6 +38,7 @@ COMPLEXITY_PROMPT = (
 
 
 def format_context(passages, max_words=350):
+    """Number the passages; each is cut to max_words so a long manual cannot overflow the model's context."""
     lines = []
     for i, p in enumerate(passages, 1):
         text = " ".join(p["text"].split()[:max_words])

@@ -1,0 +1,41 @@
+{
+  "pooled": {
+    "n": 1326,
+    "before": {
+      "binary_conf_ece": 0.0296,
+      "p_insuff_ece": 0.0737,
+      "top_label_ece": 0.0537
+    },
+    "after": {
+      "binary_conf_ece": 0.0251,
+      "p_insuff_ece": 0.0705,
+      "top_label_ece": 0.0513
+    }
+  },
+  "synthetic": {
+    "n": 1016,
+    "before": {
+      "binary_conf_ece": 0.0239,
+      "p_insuff_ece": 0.0507,
+      "top_label_ece": 0.0379
+    },
+    "after": {
+      "binary_conf_ece": 0.0214,
+      "p_insuff_ece": 0.0487,
+      "top_label_ece": 0.0428
+    }
+  },
+  "techqa": {
+    "n": 310,
+    "before": {
+      "binary_conf_ece": 0.0711,
+      "p_insuff_ece": 0.1652,
+      "top_label_ece": 0.1375
+    },
+    "after": {
+      "binary_conf_ece": 0.0627,
+      "p_insuff_ece": 0.156,
+      "top_label_ece": 0.1257
+    }
+  }
+}

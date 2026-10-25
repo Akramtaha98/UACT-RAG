@@ -60,7 +60,7 @@ def export(a):
         ev = r["evidence"]
         cited = [int(m) - 1 for m in CITE.findall(c) if 0 < int(m) <= len(ev)]
         show = [ev[j] for j in cited] if cited else ev
-        txt = "\n\n".join(f"[P{ev.index(p) + 1}] " + " ".join(p["text"].split()[:a.max_words]) for p in show)
+        txt = "\n\n".join(f"[P{ev.index(p) + 1}] " + " ".join(p["text"].split()[:a.max_words] if a.max_words > 0 else p["text"].split()) for p in show)
         clean = CITE.sub("", c).replace("DOCUMENTED", "").replace("INFERENCE", "").strip(" :-")
         v = ver.verify(c, ev)
         rows.append([i, clean, txt, "", ""])

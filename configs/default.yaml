@@ -21,7 +21,7 @@ retrieval:
   passage_overlap: 40
 control:
   max_rounds: 3       # B: maximum number of RETRIEVE actions
-  lambda_grid: [1.0, 3.0, 5.0]      # penalty on wrong/unsupported answers
+  lambda_grid: [0.1, 0.25, 0.5, 1.0, 2.0]   # grid of the reported runs
   mu_grid: [0.0, 0.05, 0.2]         # penalty per cost unit
   abstain_credit: 0.5               # utility of abstaining on an unanswerable question
   support_floor: 0.5                # an answer counts as "good" only if correct AND its claim support rate >= this

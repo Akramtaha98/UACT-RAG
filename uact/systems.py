@@ -467,13 +467,13 @@ def score_records(ctx, qs, recs, use_judge=None):
         elif not q["answerable"]:
             r["correct"], r["error"] = False, 1
         else:
-            if grounded and gold:  # primary rule, validated against a human audit
+            if grounded and gold:  # primary rule, validated against a human audit: gold document in the evidence AND token-F1 floor
                 r["correct"] = bool(gold_hit and f1 >= cfg["f1_correct_threshold"])
             elif use_judge:
                 r["correct"] = bool(judge[i])
             else:
                 r["correct"] = f1 >= cfg["f1_correct_threshold"]
-            if i in judge:  # LLM judge logged as a secondary metric
+            if i in judge:  # the LLM judge is logged as a secondary metric (known to be lenient, see the audit)
                 r["judge_correct"], r["judge_text"] = bool(judge[i]), judge_text[i]
             r["error"] = int(not r["correct"])
         if r["answered"] and ctx.verifier is not None and r["evidence"]:

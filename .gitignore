@@ -10,3 +10,7 @@ data/
 nohup.out
 run.log
 .ipynb_checkpoints/
+*.zip
+logs/
+logs_*.txt
+data/review/

@@ -1,6 +1,6 @@
 """CPU smoke test with stub models: checks control flow, shapes and bookkeeping without a GPU or any download.
    python tests/smoke_test.py
-It does NOT validate model quality; it only catches wiring bugs before you spend H200 time."""
+It does NOT validate model quality; it only catches wiring bugs before you spend GPU time."""
 import os
 import pickle
 import sys
