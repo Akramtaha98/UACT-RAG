@@ -8,7 +8,7 @@ models:
   embedder: BAAI/bge-m3                 # MIT
   reranker: BAAI/bge-reranker-v2-m3     # Apache-2.0
   nli: microsoft/deberta-large-mnli     # MIT
-  vllm_gpu_mem_util: 0.45               # leave room on the H200 for embedder/reranker/NLI
+  vllm_gpu_mem_util: 0.45               # leave room on the GPU for embedder/reranker/NLI
   max_model_len: 16384
 retrieval:
   bm25_k: 100
@@ -21,7 +21,7 @@ retrieval:
   passage_overlap: 40
 control:
   max_rounds: 3       # B: maximum number of RETRIEVE actions
-  lambda_grid: [0.1, 0.25, 0.5, 1.0, 2.0]      # penalty on wrong/unsupported answers
+  lambda_grid: [1.0, 3.0, 5.0]      # penalty on wrong/unsupported answers
   mu_grid: [0.0, 0.05, 0.2]         # penalty per cost unit
   abstain_credit: 0.5               # utility of abstaining on an unanswerable question
   support_floor: 0.5                # an answer counts as "good" only if correct AND its claim support rate >= this
@@ -34,8 +34,8 @@ generation:
   temperature: 0.0
 eval:
   grounded_correctness: true     # answerable question is correct iff gold document is in the evidence AND token-F1 >= f1_correct_threshold
-  f1_correct_threshold: 0.15     # chosen on a human audit of 60 validation answers, checked on a held-out audit
-  use_llm_judge: false           # the LLM judge was too lenient in the audit; enable with --set eval.use_llm_judge=true as a secondary metric
+  f1_correct_threshold: 0.15     # chosen on a human audit of 60 validation answers (see paper); checked on a held-out audit
+  use_llm_judge: false           # the LLM judge was found too lenient in the audit; enable with --set eval.use_llm_judge=true to log it as a secondary metric
   support_threshold: 0.5         # NLI entailment probability for a claim to count as supported
   ece_bins: 15
   bootstrap: 2000
