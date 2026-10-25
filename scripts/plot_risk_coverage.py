@@ -25,7 +25,8 @@ _font = next((f for f in ("Arial", "Liberation Sans", "DejaVu Sans") if f in _av
 plt.rcParams.update({"font.family": _font, "font.size": 8, "axes.spines.top": False, "axes.spines.right": False})
 COL = {"B2": "#0072B2", "B6": "#999999", "B8": "#E69F00", "B9": "#009E73", "UACT": "#D55E00"}
 NAME = {"B2": "B2 hybrid RAG", "B6": "B6 fixed + threshold", "B8": "B8 confidence controller", "B9": "B9 sufficiency autorater", "UACT": "UACT-RAG"}
-HUMAN = {"B2": (1.0, 0.732, 0.68, 0.78), "B8": (0.535, 0.668, 0.59, 0.74), "B9": (0.068, 0.571, 0.37, 0.76), "UACT": (0.065, 0.450, 0.26, 0.66)}
+# (coverage, risk, lo, hi): intervals are the simulation-based 95% intervals of Table 7 (audit sampling + question sampling), not Wilson intervals
+HUMAN = {"B2": (1.0, 0.732, 0.65, 0.81), "B8": (0.535, 0.668, 0.57, 0.77), "B9": (0.068, 0.571, 0.38, 0.76), "UACT": (0.065, 0.450, 0.25, 0.65)}
 MARK = {"UACT": "*", "B9": "s", "B8": "D", "B6": "^", "B2": "o"}
 
 
@@ -77,7 +78,7 @@ def main():
         ax[1].errorbar([c + {"B9": -0.015, "UACT": 0.015}.get(s, 0.0)], [r], yerr=[[r - lo], [hi - r]], fmt=MARK.get(s, "o"), color=COL.get(s), ecolor=COL.get(s), capsize=2.5,
                        markersize=7 if s != "UACT" else 11, markeredgecolor="black", markeredgewidth=0.6, label=NAME.get(s, s))
     ax[1].set_xlabel("Coverage (fraction answered)")
-    ax[1].set_ylabel("Selective risk (human audit, Wilson 95%)")
+    ax[1].set_ylabel("Selective risk (human audit, simulated 95% interval)")
     ax[1].set_xlim(-0.03, 1.06); ax[1].set_ylim(0, 1.0)
     ax[1].grid(alpha=0.25, lw=0.5)
     ax[1].text(0.0, 1.03, "(b)", transform=ax[1].transAxes, fontweight="bold")

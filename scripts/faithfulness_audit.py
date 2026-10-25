@@ -8,8 +8,18 @@
 
 Sheet A has every claim; sheet B is a random subset for a second annotator. The sheet hides the system and the NLI verdict.
 Reported: human-supported rate per system (Wilson 95% CI), and agreement of the NLI verdict with the human label.
+
+Matched-evidence check (the sheet shows passages cut at --max_words words, the verifier saw full passages in 220-word windows):
+  # 4. re-run NLI on EXACTLY the claim and the passage text shown on the sheet (needs the NLI model once)
+  python scripts/faithfulness_audit.py renli --sheet data/review/faith1_A.csv --out data/review/faith1_nli_trunc.json
+  # 5. report with answer-clustered bootstrap intervals and both NLI verdicts (original and matched evidence)
+  python scripts/faithfulness_audit.py import --sheet data/review/faith1_final.csv --key data/review/faith1_key.json \
+         --nli_trunc data/review/faith1_nli_trunc.json --boot 2000
+Claims from the same answer are not independent, so the intervals resample ANSWERS (system + question), not claims.
 """
-import argparse, csv, json, math, os, random, sys
+import argparse, csv, json, math, os, random, re, sys
+
+import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -66,6 +76,33 @@ def export(a):
     print(f"wrote {len(rows)} claims to {OUT}/{a.name}_A.csv (+ {len(second)} in _B.csv) and {a.name}_key.json; keep the key from annotators")
 
 
+def renli(a):
+    """Re-score every claim with the NLI model against exactly the passage text shown on the annotation sheet."""
+    import yaml
+    from uact.models import NLI
+    from uact.verifier import _windows
+    cfg = yaml.safe_load(open(a.config))
+    nli, thr = NLI(cfg["models"]["nli"], a.device), cfg["eval"]["support_threshold"]
+    out = {}
+    with open(a.sheet, newline="", encoding="utf-8-sig") as f:
+        rows = list(csv.DictReader(f))
+    pcol = [c for c in rows[0] if c.startswith("passages")][0]
+    for row in rows:
+        shown = [re.sub(r"^\[P\d+\]\s*", "", x.strip()) for x in re.split(r"\n\s*\n", row[pcol]) if x.strip()]
+        prem = [w for t in shown for w in _windows(t)]
+        probs = nli.probs(prem, [row["claim"]] * len(prem)) if prem else []
+        best = max([float(p[2]) for p in probs], default=0.0)
+        out[int(row["id"])] = {"nli_trunc_supported": bool(best >= thr), "nli_trunc_score": best}
+    json.dump(out, open(a.out, "w"), indent=1)
+    print(f"wrote {len(out)} matched-evidence NLI verdicts to {a.out}; supported {sum(v['nli_trunc_supported'] for v in out.values())}")
+
+
+def kappa_vec(x, y):
+    x, y = np.asarray(x, bool), np.asarray(y, bool)
+    po = (x == y).mean(); pe = x.mean() * y.mean() + (1 - x.mean()) * (1 - y.mean())
+    return float("nan") if pe == 1 else float((po - pe) / (1 - pe))
+
+
 def read(path):
     out = {}
     with open(path, newline="", encoding="utf-8-sig") as f:
@@ -97,7 +134,43 @@ def do_import(a):
         agree = sum(H[i] == key[i]['nli_supported'] for i in v) / len(v)
         print(f"{s:8s} n={len(v):3d} human-supported {k / len(v):.2f} [{lo:.2f}, {hi:.2f}] | NLI-supported claims: {len(nli)}, of which human-supported {kn} | NLI-human agreement {agree:.2f}")
     k, n = kappa({i: H[i] for i in ids}, {i: key[i]['nli_supported'] for i in ids})
-    print(f"pooled NLI vs human kappa={k:.2f} (n={n})")
+    print(f"pooled NLI (original evidence) vs human kappa={k:.2f} (n={n})")
+    # ---- answer-clustered bootstrap: claims from one answer (system + question) are resampled together
+    T = json.load(open(a.nli_trunc)) if a.nli_trunc else None
+    T = {int(i): v["nli_trunc_supported"] for i, v in T.items()} if T else None
+    rng = np.random.default_rng(0)
+    cl = {i: f"{key[i]['system']}|{key[i]['qid']}" for i in ids}
+    systems = sorted({key[i]['system'] for i in ids})
+    print(f"\nAnswer-clustered bootstrap ({a.boot} resamples); clusters = answers (system + question)")
+    for s_ in systems + ["ALL"]:
+        v = [i for i in ids if s_ == "ALL" or key[i]['system'] == s_]
+        groups = {}
+        for i in v: groups.setdefault(cl[i], []).append(i)
+        keys_ = list(groups)
+        hs, kn, kt = [], [], []
+        for _ in range(a.boot):
+            pick = [groups[keys_[j]] for j in rng.integers(0, len(keys_), len(keys_))]
+            ii = [i for g in pick for i in g]
+            h = [H[i] for i in ii]
+            hs.append(np.mean(h))
+            if s_ == "ALL":
+                kn.append(kappa_vec(h, [key[i]['nli_supported'] for i in ii]))
+                if T is not None and all(i in T for i in ii):
+                    kt.append(kappa_vec(h, [T[i] for i in ii]))
+        pt = np.mean([H[i] for i in v])
+        line = f"{s_:8s} answers={len(keys_):3d} claims={len(v):3d} human-supported {pt:.2f} cluster-95% [{np.percentile(hs, 2.5):.2f}, {np.percentile(hs, 97.5):.2f}]"
+        if s_ == "ALL":
+            line += f" | NLI(original) kappa {kappa_vec([H[i] for i in v], [key[i]['nli_supported'] for i in v]):.2f} [{np.nanpercentile(kn, 2.5):.2f}, {np.nanpercentile(kn, 97.5):.2f}]"
+            if T is not None and all(i in T for i in v):
+                line += f" | NLI(matched evidence) kappa {kappa_vec([H[i] for i in v], [T[i] for i in v]):.2f} [{np.nanpercentile(kt, 2.5):.2f}, {np.nanpercentile(kt, 97.5):.2f}]"
+        print(line)
+    if T is not None:
+        print("\nMatched-evidence NLI (verifier run on exactly the passage text the annotators saw)")
+        for s_ in systems:
+            v = [i for i in ids if key[i]['system'] == s_ and i in T]
+            nl = [i for i in v if T[i]]
+            print(f"{s_:8s} NLI-supported {len(nl):2d} of {len(v)}, of which human-supported {sum(H[i] for i in nl):2d} | agreement {np.mean([H[i] == T[i] for i in v]):.2f}"
+                  f" | original-evidence NLI supported {sum(key[i]['nli_supported'] for i in v):2d}")
 
 
 if __name__ == "__main__":
@@ -108,4 +181,7 @@ if __name__ == "__main__":
     e.add_argument("--second_n", type=int, default=60); e.add_argument("--max_words", type=int, default=150)
     e.add_argument("--name", default="faith1"); e.add_argument("--seed", type=int, default=0); e.add_argument("--device", default="cuda")
     i = sp.add_parser("import"); i.add_argument("--sheet", required=True); i.add_argument("--key", required=True); i.add_argument("--sheet2")
-    a = ap.parse_args(); (export if a.cmd == "export" else do_import)(a)
+    i.add_argument("--nli_trunc", default=None); i.add_argument("--boot", type=int, default=2000)
+    r = sp.add_parser("renli"); r.add_argument("--sheet", required=True); r.add_argument("--out", default="data/review/faith1_nli_trunc.json")
+    r.add_argument("--config", default="configs/default.yaml"); r.add_argument("--device", default="cuda")
+    a = ap.parse_args(); {"export": export, "import": do_import, "renli": renli}[a.cmd](a)
