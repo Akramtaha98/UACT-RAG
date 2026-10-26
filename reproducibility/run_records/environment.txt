@@ -15,7 +15,7 @@ NVIDIA H200 NVL, 595.71.05, 143771 MiB
 NVIDIA H200 NVL, 595.71.05, 143771 MiB
 NVIDIA H200 NVL, 595.71.05, 143771 MiB
 NVIDIA H200 NVL, 595.71.05, 143771 MiB
-git commit 31cb934d400776d87e59f52e000fae4796b3148d
+git commit 2cd0c4701cff744dec7cc0840a4eede8ff2e8e24
 seed 0 | models {'generator': 'Qwen/Qwen3-8B', 'embedder': 'BAAI/bge-m3', 'reranker': 'BAAI/bge-reranker-v2-m3', 'nli': 'microsoft/deberta-large-mnli', 'vllm_gpu_mem_util': 0.45, 'max_model_len': 16384}
 model revision google 7c38f16641f455ef0685b18431faf1b17722d5a1
 model revision Qwen a09a35458c702b33eeacc393d103063234e8bc28
@@ -46,3 +46,4 @@ model revision Qwen 5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd
 model revision deepseek-ai 916b56a44061fd5cd7d6a8fb632557ed4f724f60
 model revision joeddav b227ee8435ceadfa86dc1368a34254e2838bf242
 model revision MoritzLaurer 8adb042d524ecd5c26d3e3ba0e3fbcf7e2d0864c
+model revision Qwen 9216db5781bf21249d130ec9da846c4624c16137
