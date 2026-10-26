@@ -34,18 +34,26 @@ print(f"{len(ids)} claims labelled by all three annotators")
 for nm, X, Y in (("1-2", A, C), ("1-3", A, D), ("2-3", C, D)):
     k, n = kappa(X, Y); print(f"kappa {nm} = {k:.2f} (n={n}); supported rate {np.mean([X[i] for i in ids]):.2f} vs {np.mean([Y[i] for i in ids]):.2f}")
 M = {i: (A[i] + C[i] + D[i]) >= 2 for i in ids}
-print("\nMajority-vote human-supported share per system (answer-clustered bootstrap 95%):")
+print("\nPer system: share of claims judged supported by each annotator, majority vote with answer-clustered bootstrap 95% interval,")
+print("and how many claims the verifier passed (full evidence / matched evidence) and how many of those the majority judged supported.")
 rng = np.random.default_rng(0)
 cl = {i: f"{key[i]['system']}|{key[i]['qid']}" for i in ids}
 for s in sorted({key[i]["system"] for i in ids}) + ["ALL"]:
     v = [i for i in ids if s == "ALL" or key[i]["system"] == s]
     g = {}
     for i in v: g.setdefault(cl[i], []).append(i)
-    ks = list(g); bs = []
+    ks = list(g); bs = []; kn = []; kt = []
     for _ in range(a.boot):
         ii = [i for j in rng.integers(0, len(ks), len(ks)) for i in g[ks[j]]]; bs.append(np.mean([M[i] for i in ii]))
+        if s == "ALL":
+            kn.append(kappa_vec([M[i] for i in ii], [key[i]["nli_supported"] for i in ii]))
+            if T and all(i in T for i in ii): kt.append(kappa_vec([M[i] for i in ii], [T[i] for i in ii]))
     nli = [i for i in v if key[i]["nli_supported"]]
-    print(f"{s:8s} claims={len(v):3d} supported {np.mean([M[i] for i in v]):.2f} [{np.percentile(bs, 2.5):.2f}, {np.percentile(bs, 97.5):.2f}] | NLI-supported {len(nli)}, of which majority-supported {sum(M[i] for i in nli)}")
-print(f"\nVerifier vs MAJORITY label: kappa (original evidence) = {kappa_vec([M[i] for i in ids], [key[i]['nli_supported'] for i in ids]):.2f}")
-if T and all(i in T for i in ids):
-    print(f"Verifier vs MAJORITY label: kappa (matched evidence) = {kappa_vec([M[i] for i in ids], [T[i] for i in ids]):.2f}")
+    tm = [i for i in v if T and T.get(i)]
+    print(f"{s:6s} n={len(v):3d} | ann1 {np.mean([A[i] for i in v]):.2f} ann2 {np.mean([C[i] for i in v]):.2f} ann3 {np.mean([D[i] for i in v]):.2f} | majority {np.mean([M[i] for i in v]):.3f} [{np.percentile(bs, 2.5):.2f}, {np.percentile(bs, 97.5):.2f}] | verifier full {len(nli)} (majority-supported {sum(M[i] for i in nli)}) | verifier matched {len(tm)} (majority-supported {sum(M[i] for i in tm)})")
+    if s == "ALL":
+        k0 = kappa_vec([M[i] for i in ids], [key[i]["nli_supported"] for i in ids])
+        print(f"\nVerifier vs MAJORITY label, full evidence: kappa = {k0:.2f} [{np.nanpercentile(kn, 2.5):.2f}, {np.nanpercentile(kn, 97.5):.2f}]")
+        if T and all(i in T for i in ids):
+            k1 = kappa_vec([M[i] for i in ids], [T[i] for i in ids])
+            print(f"Verifier vs MAJORITY label, matched evidence: kappa = {k1:.2f} [{np.nanpercentile(kt, 2.5):.2f}, {np.nanpercentile(kt, 97.5):.2f}]")
