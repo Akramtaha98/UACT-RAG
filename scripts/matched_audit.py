@@ -12,7 +12,23 @@ Answers to unanswerable questions are errors by construction and are NOT shown; 
 import argparse, csv, json, math, os, random, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from review_sheet import kappa, read_sheet  # noqa: E402
+from review_sheet import NO, YES, kappa, read_sheet as _read_csv  # noqa: E402
+
+
+def read_sheet(path):
+    """CSV (as exported) or an .xlsx returned by an annotator (sheet 'Items', columns id and 'decision (y/n)')."""
+    if not path.lower().endswith('.xlsx'):
+        return _read_csv(path)
+    import openpyxl
+    ws = openpyxl.load_workbook(path, data_only=True)['Items']
+    rows = list(ws.iter_rows(values_only=True)); h = [str(x or '').strip().lower() for x in rows[0]]
+    ii, di = h.index('id'), next(k for k, x in enumerate(h) if x.startswith('decision'))
+    out = {}
+    for r in rows[1:]:
+        d = str(r[di] or '').strip().lower()
+        if d in YES: out[int(r[ii])] = True
+        elif d in NO: out[int(r[ii])] = False
+    return out
 
 OUT = "data/review"
 
@@ -86,6 +102,23 @@ def do_import(a):
             if s != ref:
                 w, k = res[s][2]
                 print(f"  {ref} vs {s}: risk {w0 / k0:.2f} vs {w / k:.2f}, p={fisher_exact([[w0, k0 - w0], [w, k - w]])[1]:.3f}")
+    if a.sheet_c:
+        C = read_sheet(a.sheet_c)
+        print(f"\n=== Three annotators (C judged {len(C)} items) ===")
+        for nm, X, Y in (("A-B", A, B), ("A-C", A, C), ("B-C", B, C)):
+            k_, n_ = kappa(X, Y); print(f"kappa {nm} = {k_:.2f} (n={n_})")
+        ids = [i for i in A if i in B and i in C]
+        maj = {i: (A[i] + B[i] + C[i]) >= 2 for i in ids}
+        print("Majority-vote selective risk at matched coverage (primary result):")
+        mres = {}
+        for s in systems:
+            w, k = risk(s, K, maj); mres[s] = (w, k); lo, hi = wilson(w, k)
+            print(f"  {s:8s} {w:3d}/{k:3d} = {w / k:.2f} [{lo:.2f}, {hi:.2f}]")
+        if ref in mres:
+            w0, k0 = mres[ref]
+            for s in systems:
+                if s != ref:
+                    w, k = mres[s]; print(f"  Fisher {ref} vs {s}: p={fisher_exact([[w0, k0 - w0], [w, k - w]])[1]:.3f}")
     print("\nReport kappa BEFORE adjudication; adjudicate disagreements only after printing this table, and say so in the paper.")
 
 
@@ -96,4 +129,5 @@ if __name__ == "__main__":
     e.add_argument("--coverage", type=float, default=0.2); e.add_argument("--name", default="matched1"); e.add_argument("--seed", type=int, default=0)
     i = sp.add_parser("import"); i.add_argument("--sheet_a", required=True); i.add_argument("--sheet_b", required=True)
     i.add_argument("--key", required=True); i.add_argument("--ref", default="UACT")
+    i.add_argument("--sheet_c", default=None, help="optional third annotator (csv or xlsx): adds pairwise kappas and majority-vote risk")
     a = ap.parse_args(); {"export": export, "import": do_import}[a.cmd](a)

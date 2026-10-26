@@ -1,0 +1,10 @@
+python scripts/matched_audit.py import --sheet_a ...A_done.csv --sheet_b ...B_done.csv --key ...key.json --sheet_c ...annotator_C.csv   (26 Oct 2026)
+kappa A-B = 0.26 (n=141)
+kappa A-C = 0.69 (n=141)
+kappa B-C = 0.36 (n=141)
+Majority-vote selective risk at matched coverage (primary result):
+  B6        43/ 62 = 0.69 [0.57, 0.79]
+  B8        42/ 62 = 0.68 [0.55, 0.78]
+  B9        35/ 62 = 0.56 [0.44, 0.68]
+  UACT      33/ 62 = 0.53 [0.41, 0.65]
+  Fisher UACT vs B6: p=0.097 | vs B8: p=0.141 | vs B9: p=0.857
