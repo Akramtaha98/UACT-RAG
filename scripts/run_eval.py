@@ -85,7 +85,10 @@ if __name__ == "__main__":
     ov = {}
     for kv in a.set:
         k, v = kv.split("=")
-        ov[k] = json.loads(v)
+        try:
+            ov[k] = json.loads(v)
+        except ValueError:
+            ov[k] = v
     cfg = load_config(a.config, ov)
     set_seed(cfg["seed"])
     wd = cfg["paths"]["work_dir"]
