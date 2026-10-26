@@ -1,0 +1,4 @@
+Post-hoc controller selection with the verifier gate in the rollouts (run_gated.sh, vllm_env, vLLM 0.30.0; 26 Oct 2026)
+selected: {'lambda': 0.25, 'mu': 0.05, 'delta': -0.1, 'stats': {'coverage': 0.21, 'selective_risk': 0.3333, 'wrong_answer_rate': 0.07, 'mean_cost': 1.8765, 'mean_calls': 0.24}}
+grid points: 150 | feasible under the stated target (risk<=0.40, coverage>=0.20): 22
+Test (UACTG): {'accuracy_all': 0.0484, 'coverage': 0.1, 'selective_risk': 0.5161, 'faithfulness': 1.0, 'retrieval_calls_mean': 1.2774, 'latency_mean': 1.2129}

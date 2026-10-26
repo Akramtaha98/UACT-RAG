@@ -1,5 +1,3 @@
- M scripts/build_controller_data.py
- M scripts/run_eval.py
-?? reproducibility/
-?? run_gated.sh
-?? scripts/collect_run_records.sh
+ M reproducibility/run_records/git_commit.txt
+ M reproducibility/run_records/git_status.txt
+?? reproducibility/gated_selection_output_2026-10-26.txt
