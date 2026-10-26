@@ -1,0 +1,11 @@
+== config ==
+lambda_grid [0.1, 0.25, 0.5, 1.0, 2.0] mu_grid [0.0, 0.05, 0.2] support_floor 0.5 n_ctx 5 support_threshold 0.5 f1_thr 0.15
+
+== controller selection ==
+risk_target 0.4 min_coverage 0.2
+selected: {'lambda': 0.1, 'mu': 0.2, 'delta': -0.2, 'stats': {'coverage': 0.24, 'selective_risk': 0.375, 'wrong_answer_rate': 0.09, 'mean_cost': 0.49778, 'mean_calls': 0.0}}
+grid points: 150 | feasible under the stated target: 4 -> feasible rule was used
+lambdas in grid: [0.1, 0.25, 0.5, 1.0, 2.0] mus: [0.0, 0.05, 0.2]
+
+== test actions (UACT) ==
+questions 310 answered 20 {'ABSTAIN': 257, 'ANSWER': 53, 'ABSTAIN_UNVERIFIED': 33, 'RETRIEVE': 10}

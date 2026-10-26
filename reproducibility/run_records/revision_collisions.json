@@ -1,0 +1,79 @@
+{
+  "train": {
+    "states": 5635,
+    "synthetic_questions": 1091,
+    "techqa_questions": 496,
+    "texts_in_both_slices": 478,
+    "synthetic_source_values": [
+      "context_swapped",
+      "original",
+      "relevant_removed",
+      "reviewed_contradiction",
+      "techqa_retrieved"
+    ],
+    "keys_example": [
+      "id",
+      "passages",
+      "question",
+      "reviewed",
+      "source",
+      "state"
+    ]
+  },
+  "val": {
+    "states": 637,
+    "synthetic_questions": 107,
+    "techqa_questions": 99,
+    "texts_in_both_slices": 3,
+    "synthetic_source_values": [
+      "context_swapped",
+      "original",
+      "relevant_removed",
+      "reviewed_contradiction",
+      "techqa_retrieved"
+    ],
+    "keys_example": [
+      "id",
+      "passages",
+      "question",
+      "reviewed",
+      "source",
+      "state"
+    ],
+    "question_texts_also_in_train": 98,
+    "share_of_questions_also_in_train": 0.4828
+  },
+  "calib": {
+    "states": 0,
+    "synthetic_questions": 0,
+    "techqa_questions": 0,
+    "texts_in_both_slices": 0,
+    "synthetic_source_values": [],
+    "keys_example": [],
+    "question_texts_also_in_train": 0,
+    "share_of_questions_also_in_train": 0.0
+  },
+  "test": {
+    "states": 1326,
+    "synthetic_questions": 223,
+    "techqa_questions": 309,
+    "texts_in_both_slices": 157,
+    "synthetic_source_values": [
+      "context_swapped",
+      "original",
+      "relevant_removed",
+      "reviewed_contradiction",
+      "techqa_retrieved"
+    ],
+    "keys_example": [
+      "id",
+      "passages",
+      "question",
+      "reviewed",
+      "source",
+      "state"
+    ],
+    "question_texts_also_in_train": 18,
+    "share_of_questions_also_in_train": 0.048
+  }
+}

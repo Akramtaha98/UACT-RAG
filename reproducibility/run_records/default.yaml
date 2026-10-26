@@ -1,0 +1,49 @@
+# UACT-RAG default configuration. Every value here should be tuned on the VALIDATION split only.
+seed: 0
+paths:
+  work_dir: runs/main          # all outputs for one experiment go here
+  data_dir: data
+models:
+  generator: Qwen/Qwen3-8B              # Apache-2.0; for RQ5 also try meta-llama/Llama-3.1-8B-Instruct
+  embedder: BAAI/bge-m3                 # MIT
+  reranker: BAAI/bge-reranker-v2-m3     # Apache-2.0
+  nli: microsoft/deberta-large-mnli     # MIT
+  vllm_gpu_mem_util: 0.45               # leave room on the GPU for embedder/reranker/NLI
+  max_model_len: 16384
+retrieval:
+  bm25_k: 100
+  dense_k: 100
+  fuse_k: 50          # candidates passed to the reranker
+  rrf_k: 60           # reciprocal-rank-fusion constant (Cormack et al., 2009); tune on validation
+  n_ctx: 5            # passages given to the generator / used for features (try 5 and 10)
+  max_evidence: 10    # cap on accumulated evidence set across retrieval rounds
+  passage_words: 200
+  passage_overlap: 40
+control:
+  max_rounds: 3       # B: maximum number of RETRIEVE actions
+  lambda_grid: [0.1, 0.25, 0.5, 1.0, 2.0]   # grid of the reported runs
+  mu_grid: [0.0, 0.05, 0.2]         # penalty per cost unit
+  abstain_credit: 0.5               # utility of abstaining on an unanswerable question
+  support_floor: 0.5                # an answer counts as "good" only if correct AND its claim support rate >= this
+  tau_ref: 0.5                      # reference-continuation threshold on P(sufficient) for RETRIEVE targets
+  cost:
+    per_1k_tokens: 1.0
+    per_retrieval: 0.5
+generation:
+  max_new_tokens: 400
+  temperature: 0.0
+eval:
+  grounded_correctness: true     # answerable question is correct iff gold document is in the evidence AND token-F1 >= f1_correct_threshold
+  f1_correct_threshold: 0.15     # chosen on a human audit of 60 validation answers (see paper); checked on a held-out audit
+  use_llm_judge: false           # the LLM judge was found too lenient in the audit; enable with --set eval.use_llm_judge=true to log it as a secondary metric
+  support_threshold: 0.5         # NLI entailment probability for a claim to count as supported
+  ece_bins: 15
+  bootstrap: 2000
+  batch_size: 32                 # use 1 for latency measurement runs
+estimator:
+  states: five                   # five | three  (three = sufficient / partial / insufficient; ablation A7)
+  hidden: 128
+  epochs: 200
+  lr: 0.001
+  weight_decay: 0.0001
+  use_llm_sufficiency_feature: true

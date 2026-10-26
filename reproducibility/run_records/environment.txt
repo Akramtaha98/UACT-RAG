@@ -1,0 +1,48 @@
+python 3.12.3 Linux-6.8.0-136-generic-x86_64-with-glibc2.39
+torch                   2.8.0+cu128
+vllm                    not installed
+transformers            4.57.6
+sentence_transformers   5.1.2
+FlagEmbedding           installed
+faiss                   not installed
+bm25s                   not installed
+sklearn                 1.6.1
+numpy                   1.26.4
+pandas                  2.2.2
+scipy                   1.13.1
+yaml                    6.0.3
+NVIDIA H200 NVL, 595.71.05, 143771 MiB
+NVIDIA H200 NVL, 595.71.05, 143771 MiB
+NVIDIA H200 NVL, 595.71.05, 143771 MiB
+NVIDIA H200 NVL, 595.71.05, 143771 MiB
+git commit 7e6bacbb2c4a96aedfb6001c8ed6ae779980cfb3
+seed 0 | models {'generator': 'Qwen/Qwen3-8B', 'embedder': 'BAAI/bge-m3', 'reranker': 'BAAI/bge-reranker-v2-m3', 'nli': 'microsoft/deberta-large-mnli', 'vllm_gpu_mem_util': 0.45, 'max_model_len': 16384}
+model revision google 7c38f16641f455ef0685b18431faf1b17722d5a1
+model revision Qwen a09a35458c702b33eeacc393d103063234e8bc28
+model revision BAAI 9a0624b896d81da7492a910ffa53731274b6cf3d
+model revision BAAI 5617a9f61b028005a4858fdac845db406aefb181
+model revision unsloth 46105e245750aad3be7fd1d81c21cb03a0e438ed
+model revision microsoft 7296194b9009373def4f7c5dad292651e4b5cf4e
+model revision Qwen b968826d9c46dd6066d109eabc6255188de91218
+model revision intfloat 3d7cfbdacd47fdda877c5cd8a79fbcc4f2a574f3
+model revision unsloth 006f5dcd1393c3add266de40994ba96225e9689d
+model revision BAAI d4aa6901d3a41ba39fb536a557fa166f842b0e09
+model revision BAAI 2cfc18c9415c912f9d8155881c133215df768a70
+model revision unsloth 99cd0d2c829e92a67c844f9144c2509632e5c87f
+model revision google cd38c4262b2b5b92de8c0443cb1e4f0a497f324c
+model revision google 2eb15465c5dd7f72a8f7984306ad05ebc3dd1e1f
+model revision deepseek-ai 711ad2ea6aa40cfca18895e8aca02ab92df1a746
+model revision Qwen cf98f3b3bbb457ad9e2bb7baf9a0125b6b88caa8
+model revision Qwen 989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+model revision BAAI 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+model revision BAAI 5c38ec7c405ec4b44b94cc5a9bb96e735b38267a
+model revision BAAI a5beb1e3e68b9ab74eb54cfd186867f64f240e1a
+model revision Qwen da87bfb608c14b7cf20ba1ce41287e8de496c0cd
+model revision Qwen 66285546d2b821cf421d4f5eb2576359d3770cd3
+model revision unsloth 946bc9ac74a6c1f8cf012497c503a119b2fcf2eb
+model revision unsloth b8755c0b498d7b538068383748d6dc20397b4d1f
+model revision sentence-transformers 836121a0533e5664b21c7aacc5d22951f2b8b25b
+model revision Qwen 5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd
+model revision deepseek-ai 916b56a44061fd5cd7d6a8fb632557ed4f724f60
+model revision joeddav b227ee8435ceadfa86dc1368a34254e2838bf242
+model revision MoritzLaurer 8adb042d524ecd5c26d3e3ba0e3fbcf7e2d0864c

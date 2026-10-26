@@ -1,0 +1,123 @@
+{
+  "n_states": 8102,
+  "n_real": 910,
+  "seeds": 5,
+  "folds": 5,
+  "max_df": 5,
+  "slices": {
+    "real_techqa": {
+      "states": 910,
+      "questions": 881,
+      "auroc": {
+        "synthetic_only": 0.634,
+        "real_only": 0.711,
+        "mixed": 0.707,
+        "top1_similarity": 0.657,
+        "llm_autorater": 0.726
+      },
+      "ci95": {
+        "synthetic_only": [
+          0.597,
+          0.67
+        ],
+        "real_only": [
+          0.677,
+          0.744
+        ],
+        "mixed": [
+          0.674,
+          0.741
+        ],
+        "top1_similarity": [
+          0.622,
+          0.694
+        ],
+        "llm_autorater": [
+          0.689,
+          0.762
+        ]
+      },
+      "mixed_minus_real_only": [
+        -0.018,
+        0.011
+      ],
+      "mixed_minus_synthetic_only": [
+        0.043,
+        0.107
+      ],
+      "real_only_minus_synthetic_only": [
+        0.044,
+        0.114
+      ],
+      "mixed_minus_autorater": [
+        -0.042,
+        0.008
+      ],
+      "real_only_minus_autorater": [
+        -0.042,
+        0.011
+      ],
+      "synthetic_only_minus_autorater": [
+        -0.13,
+        -0.055
+      ]
+    },
+    "synthetic": {
+      "states": 7192,
+      "questions": 1528,
+      "auroc": {
+        "synthetic_only": 0.906,
+        "real_only": 0.745,
+        "mixed": 0.906,
+        "top1_similarity": 0.829,
+        "llm_autorater": 0.848
+      },
+      "ci95": {
+        "synthetic_only": [
+          0.9,
+          0.911
+        ],
+        "real_only": [
+          0.737,
+          0.753
+        ],
+        "mixed": [
+          0.9,
+          0.911
+        ],
+        "top1_similarity": [
+          0.822,
+          0.836
+        ],
+        "llm_autorater": [
+          0.84,
+          0.857
+        ]
+      },
+      "mixed_minus_real_only": [
+        0.153,
+        0.167
+      ],
+      "mixed_minus_synthetic_only": [
+        -0.001,
+        0.001
+      ],
+      "real_only_minus_synthetic_only": [
+        -0.168,
+        -0.153
+      ],
+      "mixed_minus_autorater": [
+        0.05,
+        0.064
+      ],
+      "real_only_minus_autorater": [
+        -0.111,
+        -0.095
+      ],
+      "synthetic_only_minus_autorater": [
+        0.05,
+        0.064
+      ]
+    }
+  }
+}

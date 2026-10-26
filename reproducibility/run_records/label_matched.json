@@ -1,0 +1,192 @@
+{
+  "n_states": 8102,
+  "seeds": 5,
+  "folds": 5,
+  "contrasts": {
+    "constructed: irrelevant vs sufficient": {
+      "positives": 3294,
+      "negatives": 990,
+      "questions": 1528,
+      "auroc": {
+        "estimator_mixed": 0.97,
+        "estimator_real_only": 0.86,
+        "top1_similarity": 0.941,
+        "llm_autorater": 0.943
+      },
+      "ci95": {
+        "estimator_mixed": [
+          0.965,
+          0.974
+        ],
+        "estimator_real_only": [
+          0.851,
+          0.869
+        ],
+        "top1_similarity": [
+          0.934,
+          0.948
+        ],
+        "llm_autorater": [
+          0.935,
+          0.951
+        ]
+      },
+      "mixed_minus_autorater": [
+        0.02,
+        0.035
+      ],
+      "mixed_minus_similarity": [
+        0.024,
+        0.034
+      ]
+    },
+    "real: irrelevant vs sufficient (answerable questions)": {
+      "positives": 234,
+      "negatives": 376,
+      "questions": 590,
+      "auroc": {
+        "estimator_mixed": 0.755,
+        "estimator_real_only": 0.748,
+        "top1_similarity": 0.691,
+        "llm_autorater": 0.766
+      },
+      "ci95": {
+        "estimator_mixed": [
+          0.718,
+          0.791
+        ],
+        "estimator_real_only": [
+          0.71,
+          0.783
+        ],
+        "top1_similarity": [
+          0.647,
+          0.732
+        ],
+        "llm_autorater": [
+          0.726,
+          0.806
+        ]
+      },
+      "mixed_minus_autorater": [
+        -0.041,
+        0.017
+      ],
+      "mixed_minus_similarity": [
+        0.018,
+        0.113
+      ]
+    },
+    "constructed: missing vs sufficient": {
+      "positives": 1241,
+      "negatives": 990,
+      "questions": 983,
+      "auroc": {
+        "estimator_mixed": 0.78,
+        "estimator_real_only": 0.64,
+        "top1_similarity": 0.698,
+        "llm_autorater": 0.767
+      },
+      "ci95": {
+        "estimator_mixed": [
+          0.765,
+          0.797
+        ],
+        "estimator_real_only": [
+          0.629,
+          0.652
+        ],
+        "top1_similarity": [
+          0.685,
+          0.713
+        ],
+        "llm_autorater": [
+          0.75,
+          0.783
+        ]
+      },
+      "mixed_minus_autorater": [
+        0.0,
+        0.027
+      ],
+      "mixed_minus_similarity": [
+        0.069,
+        0.096
+      ]
+    },
+    "real: missing (unanswerable) vs sufficient": {
+      "positives": 300,
+      "negatives": 376,
+      "questions": 656,
+      "auroc": {
+        "estimator_mixed": 0.671,
+        "estimator_real_only": 0.682,
+        "top1_similarity": 0.63,
+        "llm_autorater": 0.694
+      },
+      "ci95": {
+        "estimator_mixed": [
+          0.634,
+          0.709
+        ],
+        "estimator_real_only": [
+          0.645,
+          0.719
+        ],
+        "top1_similarity": [
+          0.589,
+          0.67
+        ],
+        "llm_autorater": [
+          0.655,
+          0.736
+        ]
+      },
+      "mixed_minus_autorater": [
+        -0.051,
+        0.004
+      ],
+      "mixed_minus_similarity": [
+        -0.005,
+        0.087
+      ]
+    },
+    "constructed: contradictory vs sufficient": {
+      "positives": 665,
+      "negatives": 990,
+      "questions": 983,
+      "auroc": {
+        "estimator_mixed": 0.882,
+        "estimator_real_only": 0.548,
+        "top1_similarity": 0.497,
+        "llm_autorater": 0.61
+      },
+      "ci95": {
+        "estimator_mixed": [
+          0.865,
+          0.896
+        ],
+        "estimator_real_only": [
+          0.537,
+          0.56
+        ],
+        "top1_similarity": [
+          0.482,
+          0.51
+        ],
+        "llm_autorater": [
+          0.593,
+          0.627
+        ]
+      },
+      "mixed_minus_autorater": [
+        0.252,
+        0.291
+      ],
+      "mixed_minus_similarity": [
+        0.364,
+        0.405
+      ]
+    }
+  }
+}

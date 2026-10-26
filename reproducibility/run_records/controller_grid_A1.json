@@ -1,0 +1,2030 @@
+{
+  "best": {
+    "lambda": 0.25,
+    "mu": 0.05,
+    "delta": 0.0,
+    "stats": {
+      "coverage": 0.2,
+      "selective_risk": 0.5,
+      "wrong_answer_rate": 0.1,
+      "mean_cost": 0.49803,
+      "mean_calls": 0.03
+    }
+  },
+  "nocost": {
+    "lambda": 0.5,
+    "mu": 0.0,
+    "delta": -0.1,
+    "stats": {
+      "coverage": 0.23,
+      "selective_risk": 0.5217391304347826,
+      "wrong_answer_rate": 0.12,
+      "mean_cost": 1.3135400000000002,
+      "mean_calls": 1.12
+    }
+  },
+  "grid": [
+    {
+      "lambda": 0.1,
+      "mu": 0.0,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 1.0,
+        "selective_risk": 0.71,
+        "wrong_answer_rate": 0.71,
+        "mean_cost": 2.4430200000000006,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.0,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.97,
+        "selective_risk": 0.711340206185567,
+        "wrong_answer_rate": 0.69,
+        "mean_cost": 2.3944900000000002,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.0,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.9,
+        "selective_risk": 0.7333333333333333,
+        "wrong_answer_rate": 0.66,
+        "mean_cost": 2.2720800000000003,
+        "mean_calls": 0.09
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.0,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.79,
+        "selective_risk": 0.7088607594936709,
+        "wrong_answer_rate": 0.56,
+        "mean_cost": 2.1910600000000002,
+        "mean_calls": 0.34
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.0,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.6,
+        "selective_risk": 0.6666666666666666,
+        "wrong_answer_rate": 0.4,
+        "mean_cost": 1.9033099999999998,
+        "mean_calls": 0.62
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.0,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.42,
+        "selective_risk": 0.6904761904761905,
+        "wrong_answer_rate": 0.29,
+        "mean_cost": 1.5615400000000002,
+        "mean_calls": 0.82
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.0,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.33,
+        "selective_risk": 0.6363636363636364,
+        "wrong_answer_rate": 0.21,
+        "mean_cost": 1.4825699999999997,
+        "mean_calls": 1.02
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.0,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.23,
+        "selective_risk": 0.6086956521739131,
+        "wrong_answer_rate": 0.14,
+        "mean_cost": 1.3262399999999999,
+        "mean_calls": 1.15
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.0,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.15,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.06,
+        "mean_cost": 1.19421,
+        "mean_calls": 1.22
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.0,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.09,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 1.1072199999999999,
+        "mean_calls": 1.37
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.05,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 1.0,
+        "selective_risk": 0.71,
+        "wrong_answer_rate": 0.71,
+        "mean_cost": 2.4430200000000006,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.05,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.89,
+        "selective_risk": 0.7303370786516854,
+        "wrong_answer_rate": 0.65,
+        "mean_cost": 2.1835700000000005,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.05,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.78,
+        "selective_risk": 0.7051282051282052,
+        "wrong_answer_rate": 0.55,
+        "mean_cost": 1.9268900000000002,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.05,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.53,
+        "selective_risk": 0.6792452830188679,
+        "wrong_answer_rate": 0.36,
+        "mean_cost": 1.31091,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.05,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.36,
+        "selective_risk": 0.6388888888888888,
+        "wrong_answer_rate": 0.23,
+        "mean_cost": 0.88318,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.05,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.31,
+        "selective_risk": 0.6129032258064516,
+        "wrong_answer_rate": 0.19,
+        "mean_cost": 0.75362,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.05,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.21,
+        "selective_risk": 0.5238095238095238,
+        "wrong_answer_rate": 0.11,
+        "mean_cost": 0.5253,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.05,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.15,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.06,
+        "mean_cost": 0.38292000000000004,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.05,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.13,
+        "selective_risk": 0.38461538461538464,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 0.32896000000000003,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.05,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.05,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.02,
+        "mean_cost": 0.12303999999999998,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.2,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.62,
+        "selective_risk": 0.7096774193548387,
+        "wrong_answer_rate": 0.44,
+        "mean_cost": 1.4829700000000003,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.2,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.33,
+        "selective_risk": 0.696969696969697,
+        "wrong_answer_rate": 0.23,
+        "mean_cost": 0.81598,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.2,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.22,
+        "selective_risk": 0.5909090909090909,
+        "wrong_answer_rate": 0.13,
+        "mean_cost": 0.5408999999999999,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.2,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.12,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.27555,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.2,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.1,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.2184,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.2,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.06,
+        "selective_risk": 0.5,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.14356,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.2,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.05,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.02,
+        "mean_cost": 0.11440000000000002,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.2,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.02,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.040589999999999994,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.2,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.02,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.040589999999999994,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.1,
+      "mu": 0.2,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.02,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.040589999999999994,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.0,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 1.0,
+        "selective_risk": 0.71,
+        "wrong_answer_rate": 0.71,
+        "mean_cost": 2.4430200000000006,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.0,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.88,
+        "selective_risk": 0.7272727272727273,
+        "wrong_answer_rate": 0.64,
+        "mean_cost": 2.2766000000000006,
+        "mean_calls": 0.19
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.0,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.74,
+        "selective_risk": 0.7027027027027027,
+        "wrong_answer_rate": 0.52,
+        "mean_cost": 2.1549000000000005,
+        "mean_calls": 0.47
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.0,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.54,
+        "selective_risk": 0.6851851851851852,
+        "wrong_answer_rate": 0.37,
+        "mean_cost": 1.80437,
+        "mean_calls": 0.68
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.0,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.37,
+        "selective_risk": 0.6756756756756757,
+        "wrong_answer_rate": 0.25,
+        "mean_cost": 1.50802,
+        "mean_calls": 0.89
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.0,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.31,
+        "selective_risk": 0.6451612903225806,
+        "wrong_answer_rate": 0.2,
+        "mean_cost": 1.4418099999999996,
+        "mean_calls": 1.02
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.0,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.23,
+        "selective_risk": 0.5652173913043478,
+        "wrong_answer_rate": 0.13,
+        "mean_cost": 1.2964200000000003,
+        "mean_calls": 1.11
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.0,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.16,
+        "selective_risk": 0.4375,
+        "wrong_answer_rate": 0.07,
+        "mean_cost": 1.2212699999999999,
+        "mean_calls": 1.22
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.0,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.12,
+        "selective_risk": 0.4166666666666667,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 1.15384,
+        "mean_calls": 1.28
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.0,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.08,
+        "selective_risk": 0.5,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 1.1128600000000002,
+        "mean_calls": 1.37
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.05,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.93,
+        "selective_risk": 0.7311827956989247,
+        "wrong_answer_rate": 0.68,
+        "mean_cost": 2.2795500000000004,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.05,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.68,
+        "selective_risk": 0.6764705882352942,
+        "wrong_answer_rate": 0.46,
+        "mean_cost": 1.6622000000000003,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.05,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.47,
+        "selective_risk": 0.6808510638297872,
+        "wrong_answer_rate": 0.32,
+        "mean_cost": 1.16817,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.05,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.37,
+        "selective_risk": 0.6486486486486487,
+        "wrong_answer_rate": 0.24,
+        "mean_cost": 0.9062899999999999,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.05,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.33,
+        "selective_risk": 0.6060606060606061,
+        "wrong_answer_rate": 0.2,
+        "mean_cost": 0.7971299999999999,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.05,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.2,
+        "selective_risk": 0.5,
+        "wrong_answer_rate": 0.1,
+        "mean_cost": 0.49803,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.05,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.16,
+        "selective_risk": 0.375,
+        "wrong_answer_rate": 0.06,
+        "mean_cost": 0.40495000000000003,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.05,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.13,
+        "selective_risk": 0.38461538461538464,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 0.32896000000000003,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.05,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.1,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.24384,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.05,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.05,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.02,
+        "mean_cost": 0.12303999999999998,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.2,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.41,
+        "selective_risk": 0.6829268292682927,
+        "wrong_answer_rate": 0.28,
+        "mean_cost": 1.0166,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.2,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.23,
+        "selective_risk": 0.5652173913043478,
+        "wrong_answer_rate": 0.13,
+        "mean_cost": 0.55363,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.2,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.17,
+        "selective_risk": 0.47058823529411764,
+        "wrong_answer_rate": 0.08,
+        "mean_cost": 0.39978,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.2,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.1,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.2184,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.2,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.07,
+        "selective_risk": 0.42857142857142855,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.14816,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.2,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.04,
+        "selective_risk": 0.25,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 0.07413,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.2,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.04,
+        "selective_risk": 0.25,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 0.07413,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.2,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.03,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.05535999999999999,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.2,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.02,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.040589999999999994,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.25,
+      "mu": 0.2,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.0,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.0,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.84,
+        "selective_risk": 0.7261904761904762,
+        "wrong_answer_rate": 0.61,
+        "mean_cost": 2.2566500000000005,
+        "mean_calls": 0.29
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.0,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.48,
+        "selective_risk": 0.6666666666666666,
+        "wrong_answer_rate": 0.32,
+        "mean_cost": 1.67157,
+        "mean_calls": 0.72
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.0,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.37,
+        "selective_risk": 0.6486486486486487,
+        "wrong_answer_rate": 0.24,
+        "mean_cost": 1.50498,
+        "mean_calls": 0.93
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.0,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.31,
+        "selective_risk": 0.6451612903225806,
+        "wrong_answer_rate": 0.2,
+        "mean_cost": 1.4212299999999995,
+        "mean_calls": 1.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.0,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.23,
+        "selective_risk": 0.5217391304347826,
+        "wrong_answer_rate": 0.12,
+        "mean_cost": 1.3135400000000002,
+        "mean_calls": 1.12
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.0,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.18,
+        "selective_risk": 0.5,
+        "wrong_answer_rate": 0.09,
+        "mean_cost": 1.2456500000000001,
+        "mean_calls": 1.21
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.0,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.15,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.06,
+        "mean_cost": 1.19421,
+        "mean_calls": 1.22
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.0,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.13,
+        "selective_risk": 0.46153846153846156,
+        "wrong_answer_rate": 0.06,
+        "mean_cost": 1.17623,
+        "mean_calls": 1.28
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.0,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.11,
+        "selective_risk": 0.45454545454545453,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 1.1466,
+        "mean_calls": 1.31
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.0,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.05,
+        "selective_risk": 0.6,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 1.08142,
+        "mean_calls": 1.43
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.05,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.63,
+        "selective_risk": 0.6666666666666666,
+        "wrong_answer_rate": 0.42,
+        "mean_cost": 1.54557,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.05,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.38,
+        "selective_risk": 0.631578947368421,
+        "wrong_answer_rate": 0.24,
+        "mean_cost": 0.9307099999999998,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.05,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.31,
+        "selective_risk": 0.6451612903225806,
+        "wrong_answer_rate": 0.2,
+        "mean_cost": 0.7593099999999998,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.05,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.22,
+        "selective_risk": 0.5,
+        "wrong_answer_rate": 0.11,
+        "mean_cost": 0.5427299999999999,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.05,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.17,
+        "selective_risk": 0.4117647058823529,
+        "wrong_answer_rate": 0.07,
+        "mean_cost": 0.42217,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.05,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.14,
+        "selective_risk": 0.35714285714285715,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 0.36052999999999996,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.05,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.12,
+        "selective_risk": 0.4166666666666667,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 0.30338,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.05,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.09,
+        "selective_risk": 0.4444444444444444,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.21826,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.05,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.08,
+        "selective_risk": 0.375,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.18067,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.05,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.03,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 0.08744999999999999,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.2,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.26,
+        "selective_risk": 0.6153846153846154,
+        "wrong_answer_rate": 0.16,
+        "mean_cost": 0.62909,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.2,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.13,
+        "selective_risk": 0.38461538461538464,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 0.31314,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.2,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.1,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.2184,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.2,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.08,
+        "selective_risk": 0.375,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.16091999999999998,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.2,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.07,
+        "selective_risk": 0.2857142857142857,
+        "wrong_answer_rate": 0.02,
+        "mean_cost": 0.13326000000000002,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.2,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.04,
+        "selective_risk": 0.25,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 0.07413,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.2,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.04,
+        "selective_risk": 0.25,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 0.07413,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.2,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.03,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.05535999999999999,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.2,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.02,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.040589999999999994,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 0.5,
+      "mu": 0.2,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.0,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.0,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.34,
+        "selective_risk": 0.6176470588235294,
+        "wrong_answer_rate": 0.21,
+        "mean_cost": 1.4762799999999996,
+        "mean_calls": 0.99
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.0,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.24,
+        "selective_risk": 0.5416666666666666,
+        "wrong_answer_rate": 0.13,
+        "mean_cost": 1.33771,
+        "mean_calls": 1.12
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.0,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.21,
+        "selective_risk": 0.5238095238095238,
+        "wrong_answer_rate": 0.11,
+        "mean_cost": 1.27547,
+        "mean_calls": 1.15
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.0,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.16,
+        "selective_risk": 0.4375,
+        "wrong_answer_rate": 0.07,
+        "mean_cost": 1.1958000000000002,
+        "mean_calls": 1.19
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.0,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.12,
+        "selective_risk": 0.4166666666666667,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 1.15384,
+        "mean_calls": 1.28
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.0,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.12,
+        "selective_risk": 0.4166666666666667,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 1.15384,
+        "mean_calls": 1.28
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.0,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.1,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 1.1472,
+        "mean_calls": 1.37
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.0,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.09,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 1.1072199999999999,
+        "mean_calls": 1.37
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.0,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.07,
+        "selective_risk": 0.42857142857142855,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 1.07288,
+        "mean_calls": 1.37
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.0,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.03,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 1.01467,
+        "mean_calls": 1.4
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.05,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.3,
+        "selective_risk": 0.5666666666666667,
+        "wrong_answer_rate": 0.17,
+        "mean_cost": 0.72167,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.05,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.18,
+        "selective_risk": 0.4444444444444444,
+        "wrong_answer_rate": 0.08,
+        "mean_cost": 0.44711,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.05,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.15,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.06,
+        "mean_cost": 0.38292000000000004,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.05,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.13,
+        "selective_risk": 0.38461538461538464,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 0.33495,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.05,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.11,
+        "selective_risk": 0.36363636363636365,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.26311,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.05,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.1,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.2459,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.05,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.08,
+        "selective_risk": 0.375,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.18067,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.05,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.08,
+        "selective_risk": 0.375,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.18067,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.05,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.06,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.02,
+        "mean_cost": 0.14017,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.05,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.04352,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.2,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.13,
+        "selective_risk": 0.38461538461538464,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 0.30921,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.2,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.09,
+        "selective_risk": 0.4444444444444444,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.19851,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.2,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.07,
+        "selective_risk": 0.42857142857142855,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.15372,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.2,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.07,
+        "selective_risk": 0.42857142857142855,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.15372,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.2,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.05,
+        "selective_risk": 0.2,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 0.08696999999999999,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.2,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.03,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.05535999999999999,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.2,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.03,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.05535999999999999,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.2,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.02377,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.2,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.02377,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 1.0,
+      "mu": 0.2,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.02377,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.0,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.12,
+        "selective_risk": 0.4166666666666667,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 1.15384,
+        "mean_calls": 1.28
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.0,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.12,
+        "selective_risk": 0.4166666666666667,
+        "wrong_answer_rate": 0.05,
+        "mean_cost": 1.15384,
+        "mean_calls": 1.28
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.0,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.1,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 1.1253199999999999,
+        "mean_calls": 1.34
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.0,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.08,
+        "selective_risk": 0.375,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 1.0900100000000001,
+        "mean_calls": 1.37
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.0,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.08,
+        "selective_risk": 0.375,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 1.0900100000000001,
+        "mean_calls": 1.37
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.0,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.07,
+        "selective_risk": 0.42857142857142855,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 1.07288,
+        "mean_calls": 1.37
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.0,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.06,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.02,
+        "mean_cost": 1.05411,
+        "mean_calls": 1.37
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.0,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.03,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 1.01467,
+        "mean_calls": 1.4
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.0,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.02,
+        "selective_risk": 0.5,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 1.01817,
+        "mean_calls": 1.43
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.0,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.98901,
+        "mean_calls": 1.43
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.05,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.11,
+        "selective_risk": 0.36363636363636365,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.26311,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.05,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.09,
+        "selective_risk": 0.4444444444444444,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.21826,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.05,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.09,
+        "selective_risk": 0.4444444444444444,
+        "wrong_answer_rate": 0.04,
+        "mean_cost": 0.21826,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.05,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.08,
+        "selective_risk": 0.375,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.18067,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.05,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.07,
+        "selective_risk": 0.42857142857142855,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.16354,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.05,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.06,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.02,
+        "mean_cost": 0.14477,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.05,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.03,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 0.08744999999999999,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.05,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.03,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 0.08744999999999999,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.05,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.02,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.058289999999999995,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.05,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.04352,
+        "mean_calls": 0.03
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.2,
+      "delta": -0.6,
+      "stats": {
+        "coverage": 0.07,
+        "selective_risk": 0.42857142857142855,
+        "wrong_answer_rate": 0.03,
+        "mean_cost": 0.14379,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.2,
+      "delta": -0.4,
+      "stats": {
+        "coverage": 0.05,
+        "selective_risk": 0.4,
+        "wrong_answer_rate": 0.02,
+        "mean_cost": 0.10329,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.2,
+      "delta": -0.3,
+      "stats": {
+        "coverage": 0.03,
+        "selective_risk": 0.3333333333333333,
+        "wrong_answer_rate": 0.01,
+        "mean_cost": 0.059359999999999996,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.2,
+      "delta": -0.2,
+      "stats": {
+        "coverage": 0.02,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.040589999999999994,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.2,
+      "delta": -0.1,
+      "stats": {
+        "coverage": 0.02,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.040589999999999994,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.2,
+      "delta": 0.0,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.02377,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.2,
+      "delta": 0.1,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.02377,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.2,
+      "delta": 0.2,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.02377,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.2,
+      "delta": 0.3,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.02377,
+        "mean_calls": 0.0
+      }
+    },
+    {
+      "lambda": 2.0,
+      "mu": 0.2,
+      "delta": 0.5,
+      "stats": {
+        "coverage": 0.01,
+        "selective_risk": 0.0,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 0.02377,
+        "mean_calls": 0.0
+      }
+    }
+  ],
+  "threshold_grid": [
+    {
+      "tau_suff": 0.3,
+      "tau_bad": 0.3,
+      "stats": {
+        "coverage": 0.92,
+        "selective_risk": 0.717391304347826,
+        "wrong_answer_rate": 0.66,
+        "mean_cost": 2.3988500000000004,
+        "mean_calls": 0.18
+      }
+    },
+    {
+      "tau_suff": 0.3,
+      "tau_bad": 0.5,
+      "stats": {
+        "coverage": 0.92,
+        "selective_risk": 0.717391304347826,
+        "wrong_answer_rate": 0.66,
+        "mean_cost": 2.45479,
+        "mean_calls": 0.27
+      }
+    },
+    {
+      "tau_suff": 0.3,
+      "tau_bad": 0.7,
+      "stats": {
+        "coverage": 0.92,
+        "selective_risk": 0.717391304347826,
+        "wrong_answer_rate": 0.66,
+        "mean_cost": 2.45479,
+        "mean_calls": 0.27
+      }
+    },
+    {
+      "tau_suff": 0.4,
+      "tau_bad": 0.3,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 1.9880799999999996,
+        "mean_calls": 2.91
+      }
+    },
+    {
+      "tau_suff": 0.4,
+      "tau_bad": 0.5,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 2.0440199999999997,
+        "mean_calls": 3.0
+      }
+    },
+    {
+      "tau_suff": 0.4,
+      "tau_bad": 0.7,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 2.0440199999999997,
+        "mean_calls": 3.0
+      }
+    },
+    {
+      "tau_suff": 0.5,
+      "tau_bad": 0.3,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 1.9880799999999996,
+        "mean_calls": 2.91
+      }
+    },
+    {
+      "tau_suff": 0.5,
+      "tau_bad": 0.5,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 2.0440199999999997,
+        "mean_calls": 3.0
+      }
+    },
+    {
+      "tau_suff": 0.5,
+      "tau_bad": 0.7,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 2.0440199999999997,
+        "mean_calls": 3.0
+      }
+    },
+    {
+      "tau_suff": 0.6,
+      "tau_bad": 0.3,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 1.9880799999999996,
+        "mean_calls": 2.91
+      }
+    },
+    {
+      "tau_suff": 0.6,
+      "tau_bad": 0.5,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 2.0440199999999997,
+        "mean_calls": 3.0
+      }
+    },
+    {
+      "tau_suff": 0.6,
+      "tau_bad": 0.7,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 2.0440199999999997,
+        "mean_calls": 3.0
+      }
+    },
+    {
+      "tau_suff": 0.7,
+      "tau_bad": 0.3,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 1.9880799999999996,
+        "mean_calls": 2.91
+      }
+    },
+    {
+      "tau_suff": 0.7,
+      "tau_bad": 0.5,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 2.0440199999999997,
+        "mean_calls": 3.0
+      }
+    },
+    {
+      "tau_suff": 0.7,
+      "tau_bad": 0.7,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 2.0440199999999997,
+        "mean_calls": 3.0
+      }
+    },
+    {
+      "tau_suff": 0.8,
+      "tau_bad": 0.3,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 1.9880799999999996,
+        "mean_calls": 2.91
+      }
+    },
+    {
+      "tau_suff": 0.8,
+      "tau_bad": 0.5,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 2.0440199999999997,
+        "mean_calls": 3.0
+      }
+    },
+    {
+      "tau_suff": 0.8,
+      "tau_bad": 0.7,
+      "stats": {
+        "coverage": 0.0,
+        "selective_risk": NaN,
+        "wrong_answer_rate": 0.0,
+        "mean_cost": 2.0440199999999997,
+        "mean_calls": 3.0
+      }
+    }
+  ],
+  "risk_target": 0.4,
+  "min_coverage": 0.2
+}

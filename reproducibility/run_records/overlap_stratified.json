@@ -1,0 +1,270 @@
+{
+  "n_questions": 310,
+  "n_overlap": 38,
+  "systems": {
+    "B2": {
+      "all": {
+        "questions": 310,
+        "answered": 310,
+        "coverage": 1.0,
+        "coverage_ci95": [
+          1.0,
+          1.0
+        ],
+        "selective_risk_proxy": 0.803,
+        "risk_ci95": [
+          0.761,
+          0.845
+        ]
+      },
+      "no_overlap": {
+        "questions": 272,
+        "answered": 272,
+        "coverage": 1.0,
+        "coverage_ci95": [
+          1.0,
+          1.0
+        ],
+        "selective_risk_proxy": 0.809,
+        "risk_ci95": [
+          0.763,
+          0.853
+        ]
+      },
+      "overlap": {
+        "questions": 38,
+        "answered": 38,
+        "coverage": 1.0,
+        "coverage_ci95": [
+          1.0,
+          1.0
+        ],
+        "selective_risk_proxy": 0.763,
+        "risk_ci95": [
+          0.618,
+          0.889
+        ]
+      }
+    },
+    "B6": {
+      "all": {
+        "questions": 310,
+        "answered": 22,
+        "coverage": 0.071,
+        "coverage_ci95": [
+          0.045,
+          0.103
+        ],
+        "selective_risk_proxy": 0.636,
+        "risk_ci95": [
+          0.435,
+          0.833
+        ]
+      },
+      "no_overlap": {
+        "questions": 272,
+        "answered": 21,
+        "coverage": 0.077,
+        "coverage_ci95": [
+          0.047,
+          0.111
+        ],
+        "selective_risk_proxy": 0.667,
+        "risk_ci95": [
+          0.45,
+          0.857
+        ]
+      },
+      "overlap": {
+        "questions": 38,
+        "answered": 1,
+        "coverage": 0.026,
+        "coverage_ci95": [
+          0.0,
+          0.088
+        ],
+        "selective_risk_proxy": 0.0,
+        "risk_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "B8": {
+      "all": {
+        "questions": 310,
+        "answered": 166,
+        "coverage": 0.535,
+        "coverage_ci95": [
+          0.477,
+          0.59
+        ],
+        "selective_risk_proxy": 0.759,
+        "risk_ci95": [
+          0.692,
+          0.82
+        ]
+      },
+      "no_overlap": {
+        "questions": 272,
+        "answered": 145,
+        "coverage": 0.533,
+        "coverage_ci95": [
+          0.473,
+          0.593
+        ],
+        "selective_risk_proxy": 0.793,
+        "risk_ci95": [
+          0.726,
+          0.857
+        ]
+      },
+      "overlap": {
+        "questions": 38,
+        "answered": 21,
+        "coverage": 0.553,
+        "coverage_ci95": [
+          0.393,
+          0.711
+        ],
+        "selective_risk_proxy": 0.524,
+        "risk_ci95": [
+          0.308,
+          0.75
+        ]
+      }
+    },
+    "B9": {
+      "all": {
+        "questions": 310,
+        "answered": 21,
+        "coverage": 0.068,
+        "coverage_ci95": [
+          0.042,
+          0.1
+        ],
+        "selective_risk_proxy": 0.476,
+        "risk_ci95": [
+          0.263,
+          0.684
+        ]
+      },
+      "no_overlap": {
+        "questions": 272,
+        "answered": 19,
+        "coverage": 0.07,
+        "coverage_ci95": [
+          0.041,
+          0.103
+        ],
+        "selective_risk_proxy": 0.474,
+        "risk_ci95": [
+          0.238,
+          0.706
+        ]
+      },
+      "overlap": {
+        "questions": 38,
+        "answered": 2,
+        "coverage": 0.053,
+        "coverage_ci95": [
+          0.0,
+          0.135
+        ],
+        "selective_risk_proxy": 0.5,
+        "risk_ci95": [
+          0.0,
+          1.0
+        ]
+      }
+    },
+    "UACT": {
+      "all": {
+        "questions": 310,
+        "answered": 20,
+        "coverage": 0.065,
+        "coverage_ci95": [
+          0.039,
+          0.094
+        ],
+        "selective_risk_proxy": 0.4,
+        "risk_ci95": [
+          0.182,
+          0.625
+        ]
+      },
+      "no_overlap": {
+        "questions": 272,
+        "answered": 18,
+        "coverage": 0.066,
+        "coverage_ci95": [
+          0.037,
+          0.099
+        ],
+        "selective_risk_proxy": 0.444,
+        "risk_ci95": [
+          0.208,
+          0.682
+        ]
+      },
+      "overlap": {
+        "questions": 38,
+        "answered": 2,
+        "coverage": 0.053,
+        "coverage_ci95": [
+          0.0,
+          0.132
+        ],
+        "selective_risk_proxy": 0.0,
+        "risk_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "A3": {
+      "all": {
+        "questions": 310,
+        "answered": 53,
+        "coverage": 0.171,
+        "coverage_ci95": [
+          0.129,
+          0.213
+        ],
+        "selective_risk_proxy": 0.547,
+        "risk_ci95": [
+          0.412,
+          0.688
+        ]
+      },
+      "no_overlap": {
+        "questions": 272,
+        "answered": 49,
+        "coverage": 0.18,
+        "coverage_ci95": [
+          0.137,
+          0.225
+        ],
+        "selective_risk_proxy": 0.571,
+        "risk_ci95": [
+          0.432,
+          0.705
+        ]
+      },
+      "overlap": {
+        "questions": 38,
+        "answered": 4,
+        "coverage": 0.105,
+        "coverage_ci95": [
+          0.023,
+          0.213
+        ],
+        "selective_risk_proxy": 0.25,
+        "risk_ci95": [
+          0.0,
+          1.0
+        ]
+      }
+    }
+  }
+}

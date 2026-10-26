@@ -1,0 +1,159 @@
+{
+  "threshold": 0.5,
+  "all_overlapping": {
+    "states": 955,
+    "questions": 314,
+    "insufficient_prevalence": 0.72,
+    "estimator": {
+      "auroc": 0.869,
+      "ci95": [
+        0.848,
+        0.89
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.757,
+      "ci95": [
+        0.73,
+        0.783
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.808,
+      "ci95": [
+        0.779,
+        0.836
+      ]
+    }
+  },
+  "all_overlap_free": {
+    "states": 371,
+    "questions": 204,
+    "insufficient_prevalence": 0.712,
+    "estimator": {
+      "auroc": 0.792,
+      "ci95": [
+        0.749,
+        0.832
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.749,
+      "ci95": [
+        0.7,
+        0.795
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.754,
+      "ci95": [
+        0.699,
+        0.809
+      ]
+    }
+  },
+  "synthetic_overlapping": {
+    "states": 765,
+    "questions": 220,
+    "insufficient_prevalence": 0.732,
+    "estimator": {
+      "auroc": 0.902,
+      "ci95": [
+        0.883,
+        0.922
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.809,
+      "ci95": [
+        0.786,
+        0.833
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.834,
+      "ci95": [
+        0.805,
+        0.862
+      ]
+    }
+  },
+  "synthetic_overlap_free": {
+    "states": 251,
+    "questions": 130,
+    "insufficient_prevalence": 0.741,
+    "estimator": {
+      "auroc": 0.87,
+      "ci95": [
+        0.829,
+        0.91
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.82,
+      "ci95": [
+        0.772,
+        0.865
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.799,
+      "ci95": [
+        0.74,
+        0.86
+      ]
+    }
+  },
+  "techqa_overlapping": {
+    "states": 190,
+    "questions": 190,
+    "insufficient_prevalence": 0.674,
+    "estimator": {
+      "auroc": 0.696,
+      "ci95": [
+        0.613,
+        0.774
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.614,
+      "ci95": [
+        0.528,
+        0.702
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.691,
+      "ci95": [
+        0.613,
+        0.767
+      ]
+    }
+  },
+  "techqa_overlap_free": {
+    "states": 120,
+    "questions": 120,
+    "insufficient_prevalence": 0.65,
+    "estimator": {
+      "auroc": 0.618,
+      "ci95": [
+        0.518,
+        0.715
+      ]
+    },
+    "top1_sim": {
+      "auroc": 0.672,
+      "ci95": [
+        0.56,
+        0.772
+      ]
+    },
+    "llm_autorater": {
+      "auroc": 0.714,
+      "ci95": [
+        0.615,
+        0.809
+      ]
+    }
+  }
+}

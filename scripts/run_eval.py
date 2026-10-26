@@ -36,6 +36,7 @@ ABL = {  # system -> (variant dir, controller file, use_verifier, allow_abstain)
     "A5": ("full", "controller_threshold.pkl", True, True),
     "A6": ("full", "controller_nocost.pkl", True, True),
     "A7": ("A7", "controller_best.pkl", True, True),
+    "UACTG": ("full_gated", "controller_best.pkl", True, True),  # controller selected with the verifier gate in the rollouts (post hoc)
 }
 
 

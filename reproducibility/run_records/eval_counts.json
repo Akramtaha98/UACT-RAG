@@ -1,0 +1,90 @@
+{
+ "A1.jsonl": {
+  "records": 310,
+  "answered": 24
+ },
+ "A2.jsonl": {
+  "records": 310,
+  "answered": 49
+ },
+ "A3.jsonl": {
+  "records": 310,
+  "answered": 53
+ },
+ "A4.jsonl": {
+  "records": 310,
+  "answered": 262
+ },
+ "A5.jsonl": {
+  "records": 310,
+  "answered": 39
+ },
+ "A6.jsonl": {
+  "records": 310,
+  "answered": 22
+ },
+ "A7.jsonl": {
+  "records": 310,
+  "answered": 21
+ },
+ "A7_forced.jsonl": {
+  "records": 310,
+  "answered": 259
+ },
+ "B0.jsonl": {
+  "records": 310,
+  "answered": 310
+ },
+ "B1.jsonl": {
+  "records": 310,
+  "answered": 310
+ },
+ "B2.jsonl": {
+  "records": 310,
+  "answered": 310
+ },
+ "B3.jsonl": {
+  "records": 310,
+  "answered": 310
+ },
+ "B4.jsonl": {
+  "records": 310,
+  "answered": 310
+ },
+ "B6.jsonl": {
+  "records": 310,
+  "answered": 22
+ },
+ "B6_forced.jsonl": {
+  "records": 310,
+  "answered": 310
+ },
+ "B7.jsonl": {
+  "records": 310,
+  "answered": 310
+ },
+ "B8.jsonl": {
+  "records": 310,
+  "answered": 166
+ },
+ "B8_forced.jsonl": {
+  "records": 310,
+  "answered": 310
+ },
+ "B9.jsonl": {
+  "records": 310,
+  "answered": 21
+ },
+ "B9_forced.jsonl": {
+  "records": 310,
+  "answered": 310
+ },
+ "UACT.jsonl": {
+  "records": 310,
+  "answered": 20
+ },
+ "UACT_forced.jsonl": {
+  "records": 310,
+  "answered": 258
+ }
+}

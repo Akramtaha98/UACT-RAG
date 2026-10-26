@@ -1,0 +1,3263 @@
+{
+  "questions": 600,
+  "folds": 5,
+  "repeats": 3,
+  "grid": {
+    "lambda": [
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "mu": [
+      0.0,
+      0.05,
+      0.2
+    ],
+    "delta": [
+      -0.6,
+      -0.4,
+      -0.2,
+      0.0,
+      0.2,
+      0.4
+    ]
+  },
+  "risk_target": 0.4,
+  "min_coverage": 0.2,
+  "variants": {
+    "five": {
+      "selected": {
+        "lambda": 1.0,
+        "mu": 0.0,
+        "delta": -0.2,
+        "coverage": 0.2089,
+        "selective_risk": 0.383,
+        "mean_cost": 0.9585
+      },
+      "selected_risk_ci95": [
+        0.317,
+        0.462
+      ],
+      "lambda_at_grid_edge": false,
+      "delta_at_grid_edge": false,
+      "frontier_best_risk_near_coverage": {
+        "0.1": {
+          "coverage": 0.059,
+          "risk": 0.198,
+          "risk_ci95": [
+            0.107,
+            0.311
+          ],
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.4
+        },
+        "0.2": {
+          "coverage": 0.159,
+          "risk": 0.329,
+          "risk_ci95": [
+            0.259,
+            0.414
+          ],
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.2
+        },
+        "0.3": {
+          "coverage": 0.253,
+          "risk": 0.428,
+          "risk_ci95": [
+            0.367,
+            0.503
+          ],
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.0
+        },
+        "0.5": {
+          "coverage": 0.459,
+          "risk": 0.536,
+          "risk_ci95": [
+            0.488,
+            0.592
+          ],
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.6
+        }
+      },
+      "mean_frontier_risk_over_targets": 0.373,
+      "all_points": [
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.9961,
+          "selective_risk": 0.691,
+          "mean_cost": 2.4417
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.9544,
+          "selective_risk": 0.6822,
+          "mean_cost": 2.3769
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.7717,
+          "selective_risk": 0.64,
+          "mean_cost": 2.1228
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.4739,
+          "selective_risk": 0.5475,
+          "mean_cost": 1.8222
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.2667,
+          "selective_risk": 0.4437,
+          "mean_cost": 1.5835
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.1494,
+          "selective_risk": 0.3606,
+          "mean_cost": 1.4316
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.9778,
+          "selective_risk": 0.6869,
+          "mean_cost": 2.3949
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.8561,
+          "selective_risk": 0.6606,
+          "mean_cost": 2.1053
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.5783,
+          "selective_risk": 0.5898,
+          "mean_cost": 1.5455
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.3339,
+          "selective_risk": 0.4759,
+          "mean_cost": 1.1248
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1944,
+          "selective_risk": 0.3857,
+          "mean_cost": 0.9592
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0894,
+          "selective_risk": 0.2857,
+          "mean_cost": 0.7877
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.6178,
+          "selective_risk": 0.598,
+          "mean_cost": 1.4545
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.3744,
+          "selective_risk": 0.4955,
+          "mean_cost": 0.8668
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.2133,
+          "selective_risk": 0.4323,
+          "mean_cost": 0.4916
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.1039,
+          "selective_risk": 0.2888,
+          "mean_cost": 0.2468
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0494,
+          "selective_risk": 0.2247,
+          "mean_cost": 0.1423
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0217,
+          "selective_risk": 0.1538,
+          "mean_cost": 0.0997
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.9711,
+          "selective_risk": 0.6842,
+          "mean_cost": 2.3996
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.8389,
+          "selective_risk": 0.6556,
+          "mean_cost": 2.1797
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.5733,
+          "selective_risk": 0.5824,
+          "mean_cost": 1.7983
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.3522,
+          "selective_risk": 0.4779,
+          "mean_cost": 1.5236
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.2172,
+          "selective_risk": 0.4066,
+          "mean_cost": 1.3749
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.1161,
+          "selective_risk": 0.2919,
+          "mean_cost": 1.2228
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.9044,
+          "selective_risk": 0.6701,
+          "mean_cost": 2.2165
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.6767,
+          "selective_risk": 0.6182,
+          "mean_cost": 1.7192
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.4283,
+          "selective_risk": 0.5266,
+          "mean_cost": 1.2122
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.2533,
+          "selective_risk": 0.4276,
+          "mean_cost": 0.936
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.16,
+          "selective_risk": 0.3542,
+          "mean_cost": 0.8116
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0733,
+          "selective_risk": 0.2652,
+          "mean_cost": 0.674
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.4594,
+          "selective_risk": 0.5357,
+          "mean_cost": 1.0714
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.2844,
+          "selective_risk": 0.4707,
+          "mean_cost": 0.6559
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.1778,
+          "selective_risk": 0.4,
+          "mean_cost": 0.4123
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0833,
+          "selective_risk": 0.24,
+          "mean_cost": 0.2033
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0422,
+          "selective_risk": 0.1842,
+          "mean_cost": 0.125
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0189,
+          "selective_risk": 0.1176,
+          "mean_cost": 0.0994
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.7917,
+          "selective_risk": 0.6407,
+          "mean_cost": 2.0925
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.555,
+          "selective_risk": 0.5776,
+          "mean_cost": 1.6834
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.37,
+          "selective_risk": 0.5015,
+          "mean_cost": 1.3711
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.2472,
+          "selective_risk": 0.4247,
+          "mean_cost": 1.2035
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.1589,
+          "selective_risk": 0.3287,
+          "mean_cost": 1.0927
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0828,
+          "selective_risk": 0.2752,
+          "mean_cost": 0.9594
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.6361,
+          "selective_risk": 0.6009,
+          "mean_cost": 1.6208
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.4228,
+          "selective_risk": 0.5269,
+          "mean_cost": 1.1437
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.285,
+          "selective_risk": 0.4522,
+          "mean_cost": 0.8749
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.1894,
+          "selective_risk": 0.3988,
+          "mean_cost": 0.7237
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1139,
+          "selective_risk": 0.3171,
+          "mean_cost": 0.5993
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0589,
+          "selective_risk": 0.1981,
+          "mean_cost": 0.5121
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.3028,
+          "selective_risk": 0.4716,
+          "mean_cost": 0.7018
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.2083,
+          "selective_risk": 0.4133,
+          "mean_cost": 0.4843
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.12,
+          "selective_risk": 0.3056,
+          "mean_cost": 0.2785
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0683,
+          "selective_risk": 0.2358,
+          "mean_cost": 0.1643
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.035,
+          "selective_risk": 0.1429,
+          "mean_cost": 0.1062
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.015,
+          "selective_risk": 0.0741,
+          "mean_cost": 0.0765
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.385,
+          "selective_risk": 0.5123,
+          "mean_cost": 1.2914
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.2828,
+          "selective_risk": 0.4479,
+          "mean_cost": 1.0875
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.2089,
+          "selective_risk": 0.383,
+          "mean_cost": 0.9585
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.1483,
+          "selective_risk": 0.3333,
+          "mean_cost": 0.8566
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.0911,
+          "selective_risk": 0.2683,
+          "mean_cost": 0.7653
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0567,
+          "selective_risk": 0.2451,
+          "mean_cost": 0.7195
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.3117,
+          "selective_risk": 0.4635,
+          "mean_cost": 0.8862
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.2356,
+          "selective_risk": 0.4127,
+          "mean_cost": 0.7302
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.1711,
+          "selective_risk": 0.3799,
+          "mean_cost": 0.6009
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.1128,
+          "selective_risk": 0.3054,
+          "mean_cost": 0.4893
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.0722,
+          "selective_risk": 0.2923,
+          "mean_cost": 0.4256
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0417,
+          "selective_risk": 0.2,
+          "mean_cost": 0.3753
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.18,
+          "selective_risk": 0.3889,
+          "mean_cost": 0.4195
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.1133,
+          "selective_risk": 0.3088,
+          "mean_cost": 0.2629
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.0772,
+          "selective_risk": 0.2446,
+          "mean_cost": 0.1855
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0444,
+          "selective_risk": 0.2125,
+          "mean_cost": 0.1134
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0256,
+          "selective_risk": 0.2174,
+          "mean_cost": 0.0862
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0128,
+          "selective_risk": 0.087,
+          "mean_cost": 0.0618
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.1717,
+          "selective_risk": 0.3528,
+          "mean_cost": 0.7971
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.135,
+          "selective_risk": 0.3169,
+          "mean_cost": 0.7228
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.0978,
+          "selective_risk": 0.2955,
+          "mean_cost": 0.6465
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.0733,
+          "selective_risk": 0.2727,
+          "mean_cost": 0.6028
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.0494,
+          "selective_risk": 0.2584,
+          "mean_cost": 0.5631
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0322,
+          "selective_risk": 0.1897,
+          "mean_cost": 0.5356
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.1483,
+          "selective_risk": 0.3483,
+          "mean_cost": 0.5235
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.1117,
+          "selective_risk": 0.3134,
+          "mean_cost": 0.4441
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.0822,
+          "selective_risk": 0.2838,
+          "mean_cost": 0.3903
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.0583,
+          "selective_risk": 0.2667,
+          "mean_cost": 0.339
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.0372,
+          "selective_risk": 0.194,
+          "mean_cost": 0.3003
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0228,
+          "selective_risk": 0.1707,
+          "mean_cost": 0.2792
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.0822,
+          "selective_risk": 0.25,
+          "mean_cost": 0.1916
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.0617,
+          "selective_risk": 0.2342,
+          "mean_cost": 0.144
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.0422,
+          "selective_risk": 0.2105,
+          "mean_cost": 0.0986
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0256,
+          "selective_risk": 0.1522,
+          "mean_cost": 0.0656
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0172,
+          "selective_risk": 0.129,
+          "mean_cost": 0.055
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0083,
+          "selective_risk": 0.0667,
+          "mean_cost": 0.0392
+        }
+      ]
+    },
+    "three": {
+      "selected": {
+        "lambda": 0.25,
+        "mu": 0.0,
+        "delta": 0.2,
+        "coverage": 0.2117,
+        "selective_risk": 0.4068,
+        "mean_cost": 1.3594
+      },
+      "selected_risk_ci95": [
+        0.343,
+        0.489
+      ],
+      "lambda_at_grid_edge": false,
+      "delta_at_grid_edge": false,
+      "frontier_best_risk_near_coverage": {
+        "0.1": {
+          "coverage": 0.067,
+          "risk": 0.2,
+          "risk_ci95": [
+            0.117,
+            0.303
+          ],
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.2
+        },
+        "0.2": {
+          "coverage": 0.152,
+          "risk": 0.359,
+          "risk_ci95": [
+            0.289,
+            0.444
+          ],
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.2
+        },
+        "0.3": {
+          "coverage": 0.251,
+          "risk": 0.426,
+          "risk_ci95": [
+            0.368,
+            0.5
+          ],
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.0
+        },
+        "0.5": {
+          "coverage": 0.471,
+          "risk": 0.544,
+          "risk_ci95": [
+            0.496,
+            0.599
+          ],
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.6
+        }
+      },
+      "mean_frontier_risk_over_targets": 0.382,
+      "all_points": [
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.9961,
+          "selective_risk": 0.6905,
+          "mean_cost": 2.4439
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.9594,
+          "selective_risk": 0.6798,
+          "mean_cost": 2.387
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.7733,
+          "selective_risk": 0.6437,
+          "mean_cost": 2.1466
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.4783,
+          "selective_risk": 0.5528,
+          "mean_cost": 1.8653
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.2756,
+          "selective_risk": 0.4516,
+          "mean_cost": 1.6522
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.1439,
+          "selective_risk": 0.3282,
+          "mean_cost": 1.4343
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.9856,
+          "selective_risk": 0.6883,
+          "mean_cost": 2.4107
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.8667,
+          "selective_risk": 0.6628,
+          "mean_cost": 2.1411
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.5944,
+          "selective_risk": 0.6009,
+          "mean_cost": 1.586
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.3422,
+          "selective_risk": 0.4903,
+          "mean_cost": 1.1736
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1844,
+          "selective_risk": 0.3614,
+          "mean_cost": 0.9617
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.09,
+          "selective_risk": 0.2593,
+          "mean_cost": 0.809
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.6256,
+          "selective_risk": 0.6083,
+          "mean_cost": 1.4766
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.3756,
+          "selective_risk": 0.4985,
+          "mean_cost": 0.8758
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.2056,
+          "selective_risk": 0.4108,
+          "mean_cost": 0.4708
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.1094,
+          "selective_risk": 0.3046,
+          "mean_cost": 0.2517
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0544,
+          "selective_risk": 0.2041,
+          "mean_cost": 0.1582
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.025,
+          "selective_risk": 0.1778,
+          "mean_cost": 0.119
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.9778,
+          "selective_risk": 0.6858,
+          "mean_cost": 2.4193
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.8439,
+          "selective_risk": 0.657,
+          "mean_cost": 2.2182
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.585,
+          "selective_risk": 0.5869,
+          "mean_cost": 1.8503
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.3533,
+          "selective_risk": 0.4921,
+          "mean_cost": 1.533
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.2117,
+          "selective_risk": 0.4068,
+          "mean_cost": 1.3594
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.1133,
+          "selective_risk": 0.2794,
+          "mean_cost": 1.1966
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.9083,
+          "selective_risk": 0.6722,
+          "mean_cost": 2.2353
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.6833,
+          "selective_risk": 0.6203,
+          "mean_cost": 1.7434
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.4206,
+          "selective_risk": 0.5297,
+          "mean_cost": 1.2072
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.2506,
+          "selective_risk": 0.4257,
+          "mean_cost": 0.9358
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1461,
+          "selective_risk": 0.3536,
+          "mean_cost": 0.7961
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0728,
+          "selective_risk": 0.229,
+          "mean_cost": 0.6744
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.4706,
+          "selective_risk": 0.5443,
+          "mean_cost": 1.1085
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.2783,
+          "selective_risk": 0.4431,
+          "mean_cost": 0.6407
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.1644,
+          "selective_risk": 0.3649,
+          "mean_cost": 0.3752
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0844,
+          "selective_risk": 0.2895,
+          "mean_cost": 0.1998
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.05,
+          "selective_risk": 0.1889,
+          "mean_cost": 0.1396
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.025,
+          "selective_risk": 0.1333,
+          "mean_cost": 0.1055
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.7906,
+          "selective_risk": 0.6444,
+          "mean_cost": 2.0849
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.5644,
+          "selective_risk": 0.5915,
+          "mean_cost": 1.69
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.3672,
+          "selective_risk": 0.5053,
+          "mean_cost": 1.352
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.2394,
+          "selective_risk": 0.4292,
+          "mean_cost": 1.1605
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.1517,
+          "selective_risk": 0.359,
+          "mean_cost": 1.0458
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0844,
+          "selective_risk": 0.2697,
+          "mean_cost": 0.9418
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.6517,
+          "selective_risk": 0.6206,
+          "mean_cost": 1.6501
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.4306,
+          "selective_risk": 0.5381,
+          "mean_cost": 1.1797
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.2683,
+          "selective_risk": 0.4431,
+          "mean_cost": 0.841
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.1756,
+          "selective_risk": 0.3734,
+          "mean_cost": 0.6945
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1072,
+          "selective_risk": 0.3005,
+          "mean_cost": 0.6142
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0594,
+          "selective_risk": 0.2056,
+          "mean_cost": 0.524
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.3011,
+          "selective_risk": 0.4613,
+          "mean_cost": 0.7057
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.19,
+          "selective_risk": 0.3977,
+          "mean_cost": 0.444
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.1222,
+          "selective_risk": 0.3273,
+          "mean_cost": 0.2848
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0694,
+          "selective_risk": 0.224,
+          "mean_cost": 0.1688
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0394,
+          "selective_risk": 0.1972,
+          "mean_cost": 0.1123
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0206,
+          "selective_risk": 0.1081,
+          "mean_cost": 0.0893
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.3861,
+          "selective_risk": 0.5094,
+          "mean_cost": 1.2971
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.2717,
+          "selective_risk": 0.4499,
+          "mean_cost": 1.0776
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.2028,
+          "selective_risk": 0.4137,
+          "mean_cost": 0.9502
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.1367,
+          "selective_risk": 0.3415,
+          "mean_cost": 0.8361
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.0972,
+          "selective_risk": 0.2914,
+          "mean_cost": 0.7967
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.055,
+          "selective_risk": 0.2121,
+          "mean_cost": 0.7211
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.3094,
+          "selective_risk": 0.465,
+          "mean_cost": 0.8874
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.2228,
+          "selective_risk": 0.4239,
+          "mean_cost": 0.7013
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.16,
+          "selective_risk": 0.3681,
+          "mean_cost": 0.5776
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.1089,
+          "selective_risk": 0.2959,
+          "mean_cost": 0.4908
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.0667,
+          "selective_risk": 0.2,
+          "mean_cost": 0.4282
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0411,
+          "selective_risk": 0.1622,
+          "mean_cost": 0.3924
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.1783,
+          "selective_risk": 0.3956,
+          "mean_cost": 0.4181
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.1156,
+          "selective_risk": 0.3125,
+          "mean_cost": 0.2622
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.0739,
+          "selective_risk": 0.2707,
+          "mean_cost": 0.1678
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0478,
+          "selective_risk": 0.2093,
+          "mean_cost": 0.1072
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.025,
+          "selective_risk": 0.1778,
+          "mean_cost": 0.0661
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0128,
+          "selective_risk": 0.0435,
+          "mean_cost": 0.0526
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.1667,
+          "selective_risk": 0.3667,
+          "mean_cost": 0.7894
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.1272,
+          "selective_risk": 0.3057,
+          "mean_cost": 0.7108
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.1006,
+          "selective_risk": 0.2818,
+          "mean_cost": 0.6663
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.0739,
+          "selective_risk": 0.2481,
+          "mean_cost": 0.618
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.05,
+          "selective_risk": 0.2,
+          "mean_cost": 0.5815
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0317,
+          "selective_risk": 0.193,
+          "mean_cost": 0.5444
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.14,
+          "selective_risk": 0.3532,
+          "mean_cost": 0.522
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.1067,
+          "selective_risk": 0.2969,
+          "mean_cost": 0.4521
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.0828,
+          "selective_risk": 0.2685,
+          "mean_cost": 0.4062
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.06,
+          "selective_risk": 0.25,
+          "mean_cost": 0.3624
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.0378,
+          "selective_risk": 0.2059,
+          "mean_cost": 0.3186
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0217,
+          "selective_risk": 0.1795,
+          "mean_cost": 0.2908
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.0839,
+          "selective_risk": 0.2583,
+          "mean_cost": 0.1973
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.0656,
+          "selective_risk": 0.2373,
+          "mean_cost": 0.1548
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.0439,
+          "selective_risk": 0.2152,
+          "mean_cost": 0.1064
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0283,
+          "selective_risk": 0.1569,
+          "mean_cost": 0.0748
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0183,
+          "selective_risk": 0.0909,
+          "mean_cost": 0.0609
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0106,
+          "selective_risk": 0.0,
+          "mean_cost": 0.0502
+        }
+      ]
+    },
+    "binary": {
+      "selected": {
+        "lambda": 1.0,
+        "mu": 0.0,
+        "delta": -0.2,
+        "coverage": 0.2044,
+        "selective_risk": 0.3913,
+        "mean_cost": 0.9722
+      },
+      "selected_risk_ci95": [
+        0.324,
+        0.469
+      ],
+      "lambda_at_grid_edge": false,
+      "delta_at_grid_edge": false,
+      "frontier_best_risk_near_coverage": {
+        "0.1": {
+          "coverage": 0.059,
+          "risk": 0.206,
+          "risk_ci95": [
+            0.12,
+            0.313
+          ],
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.4
+        },
+        "0.2": {
+          "coverage": 0.151,
+          "risk": 0.349,
+          "risk_ci95": [
+            0.277,
+            0.437
+          ],
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.2
+        },
+        "0.3": {
+          "coverage": 0.258,
+          "risk": 0.422,
+          "risk_ci95": [
+            0.359,
+            0.495
+          ],
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.0
+        },
+        "0.5": {
+          "coverage": 0.463,
+          "risk": 0.547,
+          "risk_ci95": [
+            0.499,
+            0.601
+          ],
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.6
+        }
+      },
+      "mean_frontier_risk_over_targets": 0.381,
+      "all_points": [
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.9956,
+          "selective_risk": 0.6903,
+          "mean_cost": 2.4442
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.9611,
+          "selective_risk": 0.6832,
+          "mean_cost": 2.3793
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.7533,
+          "selective_risk": 0.6401,
+          "mean_cost": 2.11
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.4789,
+          "selective_risk": 0.5557,
+          "mean_cost": 1.8756
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.2633,
+          "selective_risk": 0.4367,
+          "mean_cost": 1.6227
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.145,
+          "selective_risk": 0.3448,
+          "mean_cost": 1.433
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.9794,
+          "selective_risk": 0.6869,
+          "mean_cost": 2.3979
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.8633,
+          "selective_risk": 0.6647,
+          "mean_cost": 2.1371
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.5767,
+          "selective_risk": 0.5934,
+          "mean_cost": 1.544
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.3339,
+          "selective_risk": 0.4875,
+          "mean_cost": 1.1707
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1794,
+          "selective_risk": 0.3746,
+          "mean_cost": 0.9761
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0944,
+          "selective_risk": 0.3059,
+          "mean_cost": 0.8418
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.6206,
+          "selective_risk": 0.6079,
+          "mean_cost": 1.4616
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.3706,
+          "selective_risk": 0.4978,
+          "mean_cost": 0.8651
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.2022,
+          "selective_risk": 0.4066,
+          "mean_cost": 0.468
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.1072,
+          "selective_risk": 0.3264,
+          "mean_cost": 0.2589
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0572,
+          "selective_risk": 0.2427,
+          "mean_cost": 0.1751
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0233,
+          "selective_risk": 0.0952,
+          "mean_cost": 0.1163
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.9744,
+          "selective_risk": 0.6847,
+          "mean_cost": 2.4051
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.8394,
+          "selective_risk": 0.6605,
+          "mean_cost": 2.1843
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.5711,
+          "selective_risk": 0.5837,
+          "mean_cost": 1.7917
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.3506,
+          "selective_risk": 0.4897,
+          "mean_cost": 1.533
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.2078,
+          "selective_risk": 0.3877,
+          "mean_cost": 1.3603
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.1172,
+          "selective_risk": 0.3318,
+          "mean_cost": 1.2045
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.9044,
+          "selective_risk": 0.6732,
+          "mean_cost": 2.2223
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.6656,
+          "selective_risk": 0.616,
+          "mean_cost": 1.7117
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.4261,
+          "selective_risk": 0.5306,
+          "mean_cost": 1.2486
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.2583,
+          "selective_risk": 0.4215,
+          "mean_cost": 0.9757
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1489,
+          "selective_risk": 0.3507,
+          "mean_cost": 0.805
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0778,
+          "selective_risk": 0.2786,
+          "mean_cost": 0.6911
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.4633,
+          "selective_risk": 0.5468,
+          "mean_cost": 1.0843
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.2789,
+          "selective_risk": 0.4462,
+          "mean_cost": 0.6494
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.1561,
+          "selective_risk": 0.3559,
+          "mean_cost": 0.3612
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0872,
+          "selective_risk": 0.2675,
+          "mean_cost": 0.2126
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.05,
+          "selective_risk": 0.2444,
+          "mean_cost": 0.1358
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0194,
+          "selective_risk": 0.1143,
+          "mean_cost": 0.0955
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.7867,
+          "selective_risk": 0.6455,
+          "mean_cost": 2.0753
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.5533,
+          "selective_risk": 0.5733,
+          "mean_cost": 1.6791
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.3589,
+          "selective_risk": 0.5,
+          "mean_cost": 1.3742
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.2428,
+          "selective_risk": 0.4142,
+          "mean_cost": 1.212
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.1511,
+          "selective_risk": 0.3493,
+          "mean_cost": 1.072
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0872,
+          "selective_risk": 0.2866,
+          "mean_cost": 0.9743
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.6211,
+          "selective_risk": 0.6002,
+          "mean_cost": 1.5877
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.42,
+          "selective_risk": 0.5344,
+          "mean_cost": 1.1571
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.2744,
+          "selective_risk": 0.4514,
+          "mean_cost": 0.8807
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.1722,
+          "selective_risk": 0.3774,
+          "mean_cost": 0.7053
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1078,
+          "selective_risk": 0.3247,
+          "mean_cost": 0.623
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0572,
+          "selective_risk": 0.233,
+          "mean_cost": 0.5347
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.3044,
+          "selective_risk": 0.4544,
+          "mean_cost": 0.7108
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.1872,
+          "selective_risk": 0.4036,
+          "mean_cost": 0.4329
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.115,
+          "selective_risk": 0.314,
+          "mean_cost": 0.2702
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.07,
+          "selective_risk": 0.2302,
+          "mean_cost": 0.1647
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0383,
+          "selective_risk": 0.2029,
+          "mean_cost": 0.1068
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0167,
+          "selective_risk": 0.1,
+          "mean_cost": 0.0751
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.385,
+          "selective_risk": 0.5094,
+          "mean_cost": 1.309
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.2833,
+          "selective_risk": 0.451,
+          "mean_cost": 1.1118
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.2044,
+          "selective_risk": 0.3913,
+          "mean_cost": 0.9722
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.1467,
+          "selective_risk": 0.3409,
+          "mean_cost": 0.8735
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.095,
+          "selective_risk": 0.2982,
+          "mean_cost": 0.7892
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0594,
+          "selective_risk": 0.2056,
+          "mean_cost": 0.7316
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.3128,
+          "selective_risk": 0.4707,
+          "mean_cost": 0.9234
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.2222,
+          "selective_risk": 0.43,
+          "mean_cost": 0.7337
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.1667,
+          "selective_risk": 0.37,
+          "mean_cost": 0.6149
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.1094,
+          "selective_risk": 0.3046,
+          "mean_cost": 0.4962
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.0689,
+          "selective_risk": 0.25,
+          "mean_cost": 0.4354
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0417,
+          "selective_risk": 0.1733,
+          "mean_cost": 0.3932
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.1606,
+          "selective_risk": 0.3772,
+          "mean_cost": 0.3736
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.11,
+          "selective_risk": 0.3182,
+          "mean_cost": 0.26
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.0761,
+          "selective_risk": 0.2628,
+          "mean_cost": 0.1819
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0539,
+          "selective_risk": 0.2268,
+          "mean_cost": 0.1349
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.025,
+          "selective_risk": 0.2222,
+          "mean_cost": 0.0769
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0161,
+          "selective_risk": 0.1034,
+          "mean_cost": 0.0705
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.1728,
+          "selective_risk": 0.3794,
+          "mean_cost": 0.8431
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.1311,
+          "selective_risk": 0.3347,
+          "mean_cost": 0.7527
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.0994,
+          "selective_risk": 0.2961,
+          "mean_cost": 0.6892
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.0761,
+          "selective_risk": 0.2847,
+          "mean_cost": 0.6513
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.0522,
+          "selective_risk": 0.2553,
+          "mean_cost": 0.6068
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0356,
+          "selective_risk": 0.2031,
+          "mean_cost": 0.5796
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.1433,
+          "selective_risk": 0.3488,
+          "mean_cost": 0.5354
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.1078,
+          "selective_risk": 0.3041,
+          "mean_cost": 0.4572
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.08,
+          "selective_risk": 0.2917,
+          "mean_cost": 0.4036
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.06,
+          "selective_risk": 0.2222,
+          "mean_cost": 0.3648
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.0394,
+          "selective_risk": 0.1972,
+          "mean_cost": 0.3292
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0233,
+          "selective_risk": 0.119,
+          "mean_cost": 0.3022
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.0844,
+          "selective_risk": 0.2829,
+          "mean_cost": 0.1987
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.0644,
+          "selective_risk": 0.2414,
+          "mean_cost": 0.1545
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.0444,
+          "selective_risk": 0.225,
+          "mean_cost": 0.1115
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0289,
+          "selective_risk": 0.1731,
+          "mean_cost": 0.0813
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0211,
+          "selective_risk": 0.1579,
+          "mean_cost": 0.07
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0133,
+          "selective_risk": 0.0417,
+          "mean_cost": 0.0563
+        }
+      ]
+    },
+    "none": {
+      "selected": {
+        "lambda": 0.1,
+        "mu": 0.2,
+        "delta": -0.2,
+        "coverage": 0.2072,
+        "selective_risk": 0.3968,
+        "mean_cost": 0.4805
+      },
+      "selected_risk_ci95": [
+        0.331,
+        0.476
+      ],
+      "lambda_at_grid_edge": true,
+      "delta_at_grid_edge": false,
+      "frontier_best_risk_near_coverage": {
+        "0.1": {
+          "coverage": 0.052,
+          "risk": 0.181,
+          "risk_ci95": [
+            0.098,
+            0.287
+          ],
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.2
+        },
+        "0.2": {
+          "coverage": 0.154,
+          "risk": 0.339,
+          "risk_ci95": [
+            0.269,
+            0.425
+          ],
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.2
+        },
+        "0.3": {
+          "coverage": 0.258,
+          "risk": 0.412,
+          "risk_ci95": [
+            0.352,
+            0.485
+          ],
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.0
+        },
+        "0.5": {
+          "coverage": 0.451,
+          "risk": 0.538,
+          "risk_ci95": [
+            0.487,
+            0.594
+          ],
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.6
+        }
+      },
+      "mean_frontier_risk_over_targets": 0.367,
+      "all_points": [
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.9961,
+          "selective_risk": 0.6905,
+          "mean_cost": 2.4429
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.9544,
+          "selective_risk": 0.6804,
+          "mean_cost": 2.3767
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.755,
+          "selective_risk": 0.6394,
+          "mean_cost": 2.1048
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.4672,
+          "selective_risk": 0.5482,
+          "mean_cost": 1.8074
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.2739,
+          "selective_risk": 0.4422,
+          "mean_cost": 1.6376
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.1439,
+          "selective_risk": 0.3359,
+          "mean_cost": 1.4503
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.9806,
+          "selective_risk": 0.6856,
+          "mean_cost": 2.4072
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.8639,
+          "selective_risk": 0.6656,
+          "mean_cost": 2.1381
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.5733,
+          "selective_risk": 0.594,
+          "mean_cost": 1.5264
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.3317,
+          "selective_risk": 0.4807,
+          "mean_cost": 1.1404
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1872,
+          "selective_risk": 0.3769,
+          "mean_cost": 0.9695
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.1006,
+          "selective_risk": 0.2983,
+          "mean_cost": 0.869
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.6344,
+          "selective_risk": 0.613,
+          "mean_cost": 1.4948
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.3678,
+          "selective_risk": 0.5076,
+          "mean_cost": 0.8597
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.2072,
+          "selective_risk": 0.3968,
+          "mean_cost": 0.4805
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.1106,
+          "selective_risk": 0.3166,
+          "mean_cost": 0.2671
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0567,
+          "selective_risk": 0.2353,
+          "mean_cost": 0.167
+        },
+        {
+          "lambda": 0.1,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0228,
+          "selective_risk": 0.122,
+          "mean_cost": 0.1125
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.9717,
+          "selective_risk": 0.685,
+          "mean_cost": 2.397
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.8361,
+          "selective_risk": 0.6625,
+          "mean_cost": 2.1575
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.5711,
+          "selective_risk": 0.5846,
+          "mean_cost": 1.7774
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.3433,
+          "selective_risk": 0.4968,
+          "mean_cost": 1.4716
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.2156,
+          "selective_risk": 0.384,
+          "mean_cost": 1.3452
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.1183,
+          "selective_risk": 0.3192,
+          "mean_cost": 1.2123
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.9044,
+          "selective_risk": 0.6726,
+          "mean_cost": 2.2264
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.67,
+          "selective_risk": 0.6211,
+          "mean_cost": 1.7012
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.4278,
+          "selective_risk": 0.5364,
+          "mean_cost": 1.2261
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.2578,
+          "selective_risk": 0.4116,
+          "mean_cost": 0.9246
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1528,
+          "selective_risk": 0.3527,
+          "mean_cost": 0.7779
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0806,
+          "selective_risk": 0.2276,
+          "mean_cost": 0.6739
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.4511,
+          "selective_risk": 0.5382,
+          "mean_cost": 1.0652
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.2761,
+          "selective_risk": 0.4386,
+          "mean_cost": 0.6382
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.1639,
+          "selective_risk": 0.3661,
+          "mean_cost": 0.3804
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0867,
+          "selective_risk": 0.2628,
+          "mean_cost": 0.2162
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.05,
+          "selective_risk": 0.1778,
+          "mean_cost": 0.1478
+        },
+        {
+          "lambda": 0.25,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.02,
+          "selective_risk": 0.0833,
+          "mean_cost": 0.1025
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.7872,
+          "selective_risk": 0.6507,
+          "mean_cost": 2.073
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.5489,
+          "selective_risk": 0.582,
+          "mean_cost": 1.6583
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.3589,
+          "selective_risk": 0.4938,
+          "mean_cost": 1.329
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.2428,
+          "selective_risk": 0.4073,
+          "mean_cost": 1.154
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.1539,
+          "selective_risk": 0.3394,
+          "mean_cost": 1.0677
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0844,
+          "selective_risk": 0.2566,
+          "mean_cost": 0.9488
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.6361,
+          "selective_risk": 0.6175,
+          "mean_cost": 1.64
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.4267,
+          "selective_risk": 0.5247,
+          "mean_cost": 1.2029
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.2739,
+          "selective_risk": 0.4239,
+          "mean_cost": 0.899
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.1844,
+          "selective_risk": 0.3886,
+          "mean_cost": 0.7416
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.1133,
+          "selective_risk": 0.3088,
+          "mean_cost": 0.634
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0628,
+          "selective_risk": 0.2124,
+          "mean_cost": 0.5553
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.3044,
+          "selective_risk": 0.4617,
+          "mean_cost": 0.71
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.1856,
+          "selective_risk": 0.3982,
+          "mean_cost": 0.4299
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.1206,
+          "selective_risk": 0.3364,
+          "mean_cost": 0.2852
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0722,
+          "selective_risk": 0.2385,
+          "mean_cost": 0.1809
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0378,
+          "selective_risk": 0.1618,
+          "mean_cost": 0.1169
+        },
+        {
+          "lambda": 0.5,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0167,
+          "selective_risk": 0.0667,
+          "mean_cost": 0.0807
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.3767,
+          "selective_risk": 0.5044,
+          "mean_cost": 1.2522
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.2778,
+          "selective_risk": 0.442,
+          "mean_cost": 1.0436
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.2078,
+          "selective_risk": 0.3984,
+          "mean_cost": 0.9125
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.1394,
+          "selective_risk": 0.3426,
+          "mean_cost": 0.8003
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.0928,
+          "selective_risk": 0.2934,
+          "mean_cost": 0.7372
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0561,
+          "selective_risk": 0.2178,
+          "mean_cost": 0.675
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.3139,
+          "selective_risk": 0.4796,
+          "mean_cost": 0.9551
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.2278,
+          "selective_risk": 0.4049,
+          "mean_cost": 0.759
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.1667,
+          "selective_risk": 0.3633,
+          "mean_cost": 0.6332
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.1133,
+          "selective_risk": 0.3284,
+          "mean_cost": 0.536
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.0711,
+          "selective_risk": 0.25,
+          "mean_cost": 0.4693
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0456,
+          "selective_risk": 0.1829,
+          "mean_cost": 0.4285
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.1678,
+          "selective_risk": 0.3775,
+          "mean_cost": 0.3929
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.1128,
+          "selective_risk": 0.3153,
+          "mean_cost": 0.2654
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.0828,
+          "selective_risk": 0.2416,
+          "mean_cost": 0.1962
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.0567,
+          "selective_risk": 0.2255,
+          "mean_cost": 0.1415
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0333,
+          "selective_risk": 0.15,
+          "mean_cost": 0.1013
+        },
+        {
+          "lambda": 1.0,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.015,
+          "selective_risk": 0.1111,
+          "mean_cost": 0.0743
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.6,
+          "coverage": 0.175,
+          "selective_risk": 0.3778,
+          "mean_cost": 0.7997
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.4,
+          "coverage": 0.1294,
+          "selective_risk": 0.3648,
+          "mean_cost": 0.7046
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": -0.2,
+          "coverage": 0.0978,
+          "selective_risk": 0.3239,
+          "mean_cost": 0.6414
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.0,
+          "coverage": 0.0772,
+          "selective_risk": 0.2806,
+          "mean_cost": 0.6114
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.2,
+          "coverage": 0.0522,
+          "selective_risk": 0.1809,
+          "mean_cost": 0.5636
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.0,
+          "delta": 0.4,
+          "coverage": 0.0361,
+          "selective_risk": 0.1385,
+          "mean_cost": 0.5394
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.6,
+          "coverage": 0.1489,
+          "selective_risk": 0.3619,
+          "mean_cost": 0.584
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.4,
+          "coverage": 0.1139,
+          "selective_risk": 0.3463,
+          "mean_cost": 0.5061
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": -0.2,
+          "coverage": 0.0867,
+          "selective_risk": 0.3013,
+          "mean_cost": 0.4514
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.0,
+          "coverage": 0.0617,
+          "selective_risk": 0.2432,
+          "mean_cost": 0.3997
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.2,
+          "coverage": 0.0433,
+          "selective_risk": 0.1795,
+          "mean_cost": 0.3684
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.05,
+          "delta": 0.4,
+          "coverage": 0.0289,
+          "selective_risk": 0.0769,
+          "mean_cost": 0.3518
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.6,
+          "coverage": 0.0883,
+          "selective_risk": 0.2767,
+          "mean_cost": 0.238
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.4,
+          "coverage": 0.0683,
+          "selective_risk": 0.2276,
+          "mean_cost": 0.1924
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": -0.2,
+          "coverage": 0.0506,
+          "selective_risk": 0.1978,
+          "mean_cost": 0.1548
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.0,
+          "coverage": 0.035,
+          "selective_risk": 0.1429,
+          "mean_cost": 0.1226
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.2,
+          "coverage": 0.0217,
+          "selective_risk": 0.0769,
+          "mean_cost": 0.0953
+        },
+        {
+          "lambda": 2.0,
+          "mu": 0.2,
+          "delta": 0.4,
+          "coverage": 0.0117,
+          "selective_risk": 0.0,
+          "mean_cost": 0.0833
+        }
+      ]
+    }
+  },
+  "paired_difference_at_matched_coverage": {
+    "three_minus_five": {
+      "0.1": {
+        "risk_difference": 0.002,
+        "ci95": [
+          -0.079,
+          0.078
+        ]
+      },
+      "0.2": {
+        "risk_difference": 0.03,
+        "ci95": [
+          -0.008,
+          0.07
+        ]
+      },
+      "0.3": {
+        "risk_difference": -0.002,
+        "ci95": [
+          -0.035,
+          0.028
+        ]
+      },
+      "0.5": {
+        "risk_difference": 0.008,
+        "ci95": [
+          -0.01,
+          0.026
+        ]
+      }
+    },
+    "binary_minus_five": {
+      "0.1": {
+        "risk_difference": 0.008,
+        "ci95": [
+          -0.055,
+          0.07
+        ]
+      },
+      "0.2": {
+        "risk_difference": 0.02,
+        "ci95": [
+          -0.03,
+          0.066
+        ]
+      },
+      "0.3": {
+        "risk_difference": -0.006,
+        "ci95": [
+          -0.042,
+          0.027
+        ]
+      },
+      "0.5": {
+        "risk_difference": 0.011,
+        "ci95": [
+          -0.01,
+          0.03
+        ]
+      }
+    },
+    "none_minus_five": {
+      "0.1": {
+        "risk_difference": -0.017,
+        "ci95": [
+          -0.094,
+          0.067
+        ]
+      },
+      "0.2": {
+        "risk_difference": 0.01,
+        "ci95": [
+          -0.043,
+          0.065
+        ]
+      },
+      "0.3": {
+        "risk_difference": -0.016,
+        "ci95": [
+          -0.055,
+          0.021
+        ]
+      },
+      "0.5": {
+        "risk_difference": 0.002,
+        "ci95": [
+          -0.021,
+          0.025
+        ]
+      }
+    }
+  }
+}
